@@ -60,36 +60,12 @@ if($_SESSION['type'] != 'member'){
     </style>
 </head>
 <body id="page-top">
-<section class="top-area">
+    <section class="top-area">
         <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Khao Yai</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button><!--/button-->
-                <div class="collapse navbar-collapse nav-responsive-list" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#"><?php echo $_SESSION['User']; ?></a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" Onclick="" href="membermap.php">Show map</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            
-                            <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
-                        </li><!--/.nav-item-->
-                    </ul><!--/ul-->
-                </div><!--/.collapse-->
-            </div><!--/.container-->
-        </nav><!--/nav-->
-        
-    </section><!--/.top-area-->
+                <a href="#page-top" class="navbar-brand js-scroll-trigger">Khao Yai</a>
+            </div>
+        </nav>
+    </section>
 </body>
 </html>
