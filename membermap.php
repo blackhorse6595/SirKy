@@ -1,4 +1,4 @@
-﻿<?php require_once 'location_model.php';?>
+﻿<?php require_once 'locations_model.php';?>
 <?php require_once 'connect.php'; ?>
 <?php SESSION_START(); ?>
 <?php 
@@ -74,7 +74,6 @@ if($_SESSION['type'] != 'member'){
 	</style>
 </head>
 <body id="page-top">
-<<<<<<< HEAD
 <section class="top-area">
         <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
             <div class="container">
@@ -106,37 +105,7 @@ if($_SESSION['type'] != 'member'){
         </nav><!--/nav-->
         
     </section><!--/.top-area-->
-=======
-	<section class="top-area">
-		<nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
-			<div class="container">
-				<a class="navbar-brand js-scroll-trigger" href="#page-top">Khao Yai</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-					<i class="fa fa-bars"></i>
-				</button>
-				<div class="collapse navbar-collapse nav-responsive-list" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="#"><?php echo $_SESSION['User']; ?></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" Onclick="" href="membermap.php">Show map</a>
-						</li>
-						<li class="nav-item">
-							
-							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</section>
+	
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
@@ -298,6 +267,5 @@ if($_SESSION['type'] != 'member'){
 			}).appendTo("body");    
 		});
 	</script>
->>>>>>> 8cec229700c94ec0fb618fe6e1c2e2fca1ff1f52
 </body>
 </html>
