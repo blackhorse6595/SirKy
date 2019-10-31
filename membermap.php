@@ -74,37 +74,68 @@ if($_SESSION['type'] != 'member'){
 	</style>
 </head>
 <body id="page-top">
-<section class="top-area">
-        <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Khao Yai</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button><!--/button-->
-                <div class="collapse navbar-collapse nav-responsive-list" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#"><?php echo $_SESSION['User']; ?></a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" Onclick="" href="membermap.php">Show map</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            
-                            <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
-                        </li><!--/.nav-item-->
-                    </ul><!--/ul-->
-                </div><!--/.collapse-->
-            </div><!--/.container-->
-        </nav><!--/nav-->
-        
-    </section><!--/.top-area-->
+	<section class="top-area">
+		<nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
+			<div class="container">
+				<a class="navbar-brand js-scroll-trigger" href="#page-top">Khao Yai</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="fa fa-bars"></i>
+				</button>
+				<div class="collapse navbar-collapse nav-responsive-list" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="#"><?php echo $_SESSION['User']; ?></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="membermap.php">Show map</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</section>
+
+	<div id="contain_map">
+		<div id="map_canvas">&nbsp;</div>
+	</div>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form id="form_user">
+						<div class="form-group">
+
+							<label for="messagetext" class="col-form-label">Message:</label>
+							<input type="text" class="form-control" id="messagetext" name="messagetext" autocomplete="off">
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" onClick="dataList.addData($('#form_user').serializeArray());">ขอความช่วยเหลือ</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
@@ -263,9 +294,25 @@ if($_SESSION['type'] != 'member'){
 			$("<script/>", {
 				"type": "text/javascript",
 				src: "//maps.google.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA&sensor=false&language=th&callback=initialize&libraries=places"
-
 			}).appendTo("body");    
 		});
 	</script>
+	<script src="assets/js/jquery.js"></script>
+
+	<!-- popper js -->
+	<script src="assets/js/popper.min.js"></script>
+
+	<!--bootstrap.min.js-->
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+	<!--Custom JS-->
+	<script src="assets/js/custom.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
