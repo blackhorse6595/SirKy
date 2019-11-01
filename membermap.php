@@ -1,4 +1,4 @@
-﻿<?php require_once 'location_model.php';?>
+﻿<?php include_once './location_model.php';?>
 <?php require_once 'connect.php'; ?>
 <?php SESSION_START(); ?>
 <?php 
@@ -74,7 +74,7 @@ if($_SESSION['type'] != 'member'){
 	</style>
 </head>
 <body id="page-top">
-<<<<<<< HEAD
+
 <section class="top-area">
         <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
             <div class="container">
@@ -106,7 +106,7 @@ if($_SESSION['type'] != 'member'){
         </nav><!--/nav-->
         
     </section><!--/.top-area-->
-=======
+
 	<section class="top-area">
 		<nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
 			<div class="container">
@@ -298,6 +298,5 @@ if($_SESSION['type'] != 'member'){
 			}).appendTo("body");    
 		});
 	</script>
->>>>>>> 8cec229700c94ec0fb618fe6e1c2e2fca1ff1f52
 </body>
 </html>
