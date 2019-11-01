@@ -1,7 +1,7 @@
 ﻿<?php include_once './location_model.php';?>
 <?php require_once 'connect.php'; ?>
 <?php SESSION_START(); ?>
-<?php 
+<?php
 if($_SESSION['type'] != 'member'){
 	header("Location: login.php");
 	exit;
@@ -62,10 +62,10 @@ if($_SESSION['type'] != 'member'){
 			position:relative;
 			width:75%;
 			height:200px;
-			margin:auto;    
-		}   
+			margin:auto;
+		}
 		/* css กำหนดความกว้าง ความสูงของแผนที่ */
-		#map_canvas { 
+		#map_canvas {
 			overflow:hidden;
 			padding-bottom:56.25%;
 			position:relative;
@@ -94,7 +94,7 @@ if($_SESSION['type'] != 'member'){
                             <a class="nav-link js-scroll-trigger" Onclick="" href="membermap.php">Show map</a>
                         </li><!--/.nav-item-->
                         <li class="nav-item">
-                            
+
                             <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
                         </li><!--/.nav-item-->
                         <li class="nav-item">
@@ -104,7 +104,7 @@ if($_SESSION['type'] != 'member'){
                 </div><!--/.collapse-->
             </div><!--/.container-->
         </nav><!--/nav-->
-        
+
     </section><!--/.top-area-->
 
 	<section class="top-area">
@@ -123,10 +123,9 @@ if($_SESSION['type'] != 'member'){
 							<a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" Onclick="" href="membermap.php">Show map</a>
+							<a class="nav-link js-scroll-trigger" href="membermap.php">Show map</a>
 						</li>
 						<li class="nav-item">
-							
 							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
 						</li>
 						<li class="nav-item">
@@ -137,6 +136,39 @@ if($_SESSION['type'] != 'member'){
 			</div>
 		</nav>
 	</section>
+
+	<div id="contain_map">
+		<div id="map_canvas">&nbsp;</div>
+	</div>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form id="form_user">
+						<div class="form-group">
+
+							<label for="messagetext" class="col-form-label">Message:</label>
+							<input type="text" class="form-control" id="messagetext" name="text" autocomplete="off">
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" onClick="dataList.addData($('#form_user').serializeArray());">ขอความช่วยเหลือ</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
@@ -151,19 +183,21 @@ if($_SESSION['type'] != 'member'){
 		var bb;
 		var cc;
 
+		var myPosition_lat;
+		var myPosition_lon;
 		function initialize() {
 			GGM=new Object(google.maps);
 			directionShow=new  GGM.DirectionsRenderer({draggable:true});
 			directionsService = new GGM.DirectionsService();
 			geocoder = new GGM.Geocoder();
-			
+
 			navigator.geolocation.getCurrentPosition(function(position){
 
 				var pos = new GGM.LatLng(position.coords.latitude,position.coords.longitude);
 
 				my_Latlng  = new GGM.LatLng(position.coords.latitude,position.coords.longitude);
 
-				initialTo=new GGM.LatLng(14.439424, 101.372485); 
+				initialTo=new GGM.LatLng(14.439424, 101.372485);
 				var my_mapTypeId=GGM.MapTypeId.ROADMAP;
 				var my_DivObj=$("#map_canvas")[0];
 
@@ -175,18 +209,17 @@ if($_SESSION['type'] != 'member'){
 
 				map = new GGM.Map(my_DivObj,myOptions);
 				directionShow.setMap(map);
-				
 				var infowindow = new GGM.InfoWindow({
 					map: map,
 					position: my_Latlng,
 					content: 'คุณอยู่ที่นี่.'
 				});
-				
+
 				var my_Point = infowindow.getPosition();
 				map.panTo(my_Point);
 				$("#lat_value").val(my_Point.lat());
 				$("#lon_value").val(my_Point.lng());
-				$("#zoom_value").	val(map.getZoom());
+				$("#zoom_value").val(map.getZoom());
 				map.setCenter(my_Latlng);
 				inputSearch = $("#pac-input")[0];
 				map.controls[GGM.ControlPosition.TOP_LEFT].push(inputSearch);
@@ -203,17 +236,17 @@ if($_SESSION['type'] != 'member'){
 				var myPosition_lon=position.coords.longitude;
 				var user = "<?php echo $_SESSION['username']?>";
 				var name = "<?php echo $_SESSION['User']?>";
-				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);  
+				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
 				$.post("addhelp.php", {
 					lat: myPosition_lat,
 					lon: myPosition_lon,
-					user:user,
-					name :name
-				});    
+					user: user,
+					name: name,
+					action: 1
+				});
 
-				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);     
+				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
 
-				
 				my_Marker.setPosition(pos);
 
 				var my_Point = my_Marker.getPosition();
@@ -221,7 +254,7 @@ if($_SESSION['type'] != 'member'){
 				$("#lon_value").val(my_Point.lng());
 				$("#zoom_value").val(map.getZoom());
 
-				map.panTo(pos); 
+				map.panTo(pos);
 				map.setCenter(pos);
 				var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
 				var locations = <?php get_confirmed_locations() ?>; /*marker*/
@@ -271,31 +304,44 @@ if($_SESSION['type'] != 'member'){
 		var dataList = {}
 		$(function(){
 			dataList.addData = function(dataSend){
-				dataSend.push({
-					name:"action",
-					value:"add"
+				// console.log(dataSend);
+				// console.log(dataSend[0].value);
+				var txt = dataSend[0].value;
+				$.post("addhelp.php", {
+					txt: txt,
+					action: 2
+				})
+				.done(function() {
+					$('#form_user')[0].reset();
+					alert('ส่งข้อความช่วยเหลือสำเร็จ');
+					window.location.href='membermap.php';
+				})
+				.fail(function() {
+					alert("error");
+				})
+				.always(function() {
+					// alert( "finished" );
 				});
-				$.post("addhelp.php",dataSend,function(response){
-					if(response != null){	
+				/*$.post("addhelp.php",dataSend,function(response){
+					if(response != null){
 						if(response[0].error!=null || response[0].success!=null){
 							var statusText = (response[0].error!=null)?response[0].error:response[0].success;
 							$('#exampleModal').modal('toggle')
-							alert(statusText);					
+							alert(statusText);
 						}
 						if(response[0].success!=null){
 							$('#form_user')[0].reset();
 							dataList.getList(0,true);
 						}
 					}
-				});
+				});*/
 			}
 		});
 		$(function(){
 			$("<script/>", {
 				"type": "text/javascript",
 				src: "//maps.google.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA&sensor=false&language=th&callback=initialize&libraries=places"
-
-			}).appendTo("body");    
+			}).appendTo("body");
 		});
 	</script>
 </body>
