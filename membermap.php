@@ -277,7 +277,10 @@ if($_SESSION['type'] != 'member'){
 					value:"add"
 				});
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 1a62b5a... Update membermap.php
 				$.post("addhelp.php",dataSend,function(response){
 					if(response != null){	
 						if(response[0].error!=null || response[0].success!=null){
@@ -291,6 +294,9 @@ if($_SESSION['type'] != 'member'){
 						}
 					}
 				});
+<<<<<<< HEAD
+>>>>>>> parent of 1a62b5a... Update membermap.php
+=======
 >>>>>>> parent of 1a62b5a... Update membermap.php
 			}
 		});
