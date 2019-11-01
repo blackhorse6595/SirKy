@@ -75,38 +75,6 @@ if($_SESSION['type'] != 'member'){
 </head>
 <body id="page-top">
 
-<section class="top-area">
-        <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Khao Yai</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button><!--/button-->
-                <div class="collapse navbar-collapse nav-responsive-list" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#"><?php echo $_SESSION['User']; ?></a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" Onclick="" href="membermap.php">Show map</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-
-                            <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
-                        </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
-                        </li><!--/.nav-item-->
-                    </ul><!--/ul-->
-                </div><!--/.collapse-->
-            </div><!--/.container-->
-        </nav><!--/nav-->
-
-    </section><!--/.top-area-->
-
 	<section class="top-area">
 		<nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
 			<div class="container">
@@ -322,19 +290,6 @@ if($_SESSION['type'] != 'member'){
 				.always(function() {
 					// alert( "finished" );
 				});
-				/*$.post("addhelp.php",dataSend,function(response){
-					if(response != null){
-						if(response[0].error!=null || response[0].success!=null){
-							var statusText = (response[0].error!=null)?response[0].error:response[0].success;
-							$('#exampleModal').modal('toggle')
-							alert(statusText);
-						}
-						if(response[0].success!=null){
-							$('#form_user')[0].reset();
-							dataList.getList(0,true);
-						}
-					}
-				});*/
 			}
 		});
 		$(function(){
