@@ -1,7 +1,7 @@
 ﻿<?php include_once './location_model.php';?>
 <?php require_once 'connect.php'; ?>
 <?php SESSION_START(); ?>
-<?php
+<?php 
 if($_SESSION['type'] != 'member'){
 	header("Location: login.php");
 	exit;
@@ -62,10 +62,10 @@ if($_SESSION['type'] != 'member'){
 			position:relative;
 			width:75%;
 			height:200px;
-			margin:auto;
-		}
+			margin:auto;    
+		}   
 		/* css กำหนดความกว้าง ความสูงของแผนที่ */
-		#map_canvas {
+		#map_canvas { 
 			overflow:hidden;
 			padding-bottom:56.25%;
 			position:relative;
@@ -124,7 +124,7 @@ if($_SESSION['type'] != 'member'){
 						<div class="form-group">
 
 							<label for="messagetext" class="col-form-label">Message:</label>
-							<input type="text" class="form-control" id="messagetext" name="text" autocomplete="off">
+							<input type="text" class="form-control" id="messagetext" name="messagetext" autocomplete="off">
 						</div>
 
 
@@ -137,6 +137,7 @@ if($_SESSION['type'] != 'member'){
 			</form>
 		</div>
 	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
@@ -151,21 +152,19 @@ if($_SESSION['type'] != 'member'){
 		var bb;
 		var cc;
 
-		var myPosition_lat;
-		var myPosition_lon;
 		function initialize() {
 			GGM=new Object(google.maps);
 			directionShow=new  GGM.DirectionsRenderer({draggable:true});
 			directionsService = new GGM.DirectionsService();
 			geocoder = new GGM.Geocoder();
-
+			
 			navigator.geolocation.getCurrentPosition(function(position){
 
 				var pos = new GGM.LatLng(position.coords.latitude,position.coords.longitude);
 
 				my_Latlng  = new GGM.LatLng(position.coords.latitude,position.coords.longitude);
 
-				initialTo=new GGM.LatLng(14.439424, 101.372485);
+				initialTo=new GGM.LatLng(14.439424, 101.372485); 
 				var my_mapTypeId=GGM.MapTypeId.ROADMAP;
 				var my_DivObj=$("#map_canvas")[0];
 
@@ -177,17 +176,18 @@ if($_SESSION['type'] != 'member'){
 
 				map = new GGM.Map(my_DivObj,myOptions);
 				directionShow.setMap(map);
+				
 				var infowindow = new GGM.InfoWindow({
 					map: map,
 					position: my_Latlng,
 					content: 'คุณอยู่ที่นี่.'
 				});
-
+				
 				var my_Point = infowindow.getPosition();
 				map.panTo(my_Point);
 				$("#lat_value").val(my_Point.lat());
 				$("#lon_value").val(my_Point.lng());
-				$("#zoom_value").val(map.getZoom());
+				$("#zoom_value").	val(map.getZoom());
 				map.setCenter(my_Latlng);
 				inputSearch = $("#pac-input")[0];
 				map.controls[GGM.ControlPosition.TOP_LEFT].push(inputSearch);
@@ -204,17 +204,17 @@ if($_SESSION['type'] != 'member'){
 				var myPosition_lon=position.coords.longitude;
 				var user = "<?php echo $_SESSION['username']?>";
 				var name = "<?php echo $_SESSION['User']?>";
-				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
+				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);  
 				$.post("addhelp.php", {
 					lat: myPosition_lat,
 					lon: myPosition_lon,
-					user: user,
-					name: name,
-					action: 1
-				});
+					user:user,
+					name :name
+				});    
 
-				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
+				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);     
 
+				
 				my_Marker.setPosition(pos);
 
 				var my_Point = my_Marker.getPosition();
@@ -222,7 +222,7 @@ if($_SESSION['type'] != 'member'){
 				$("#lon_value").val(my_Point.lng());
 				$("#zoom_value").val(map.getZoom());
 
-				map.panTo(pos);
+				map.panTo(pos); 
 				map.setCenter(pos);
 				var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
 				var locations = <?php get_confirmed_locations() ?>; /*marker*/
@@ -272,32 +272,54 @@ if($_SESSION['type'] != 'member'){
 		var dataList = {}
 		$(function(){
 			dataList.addData = function(dataSend){
-				// console.log(dataSend);
-				// console.log(dataSend[0].value);
-				var txt = dataSend[0].value;
-				$.post("addhelp.php", {
-					txt: txt,
-					action: 2
-				})
-				.done(function() {
-					$('#form_user')[0].reset();
-					alert('ส่งข้อความช่วยเหลือสำเร็จ');
-					window.location.href='membermap.php';
-				})
-				.fail(function() {
-					alert("error");
-				})
-				.always(function() {
-					// alert( "finished" );
+				dataSend.push({
+					name:"action",
+					value:"add"
 				});
+<<<<<<< HEAD
+=======
+				$.post("addhelp.php",dataSend,function(response){
+					if(response != null){	
+						if(response[0].error!=null || response[0].success!=null){
+							var statusText = (response[0].error!=null)?response[0].error:response[0].success;
+							$('#exampleModal').modal('toggle')
+							alert(statusText);					
+						}
+						if(response[0].success!=null){
+							$('#form_user')[0].reset();
+							dataList.getList(0,true);
+						}
+					}
+				});
+>>>>>>> parent of 1a62b5a... Update membermap.php
 			}
 		});
 		$(function(){
 			$("<script/>", {
 				"type": "text/javascript",
 				src: "//maps.google.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA&sensor=false&language=th&callback=initialize&libraries=places"
-			}).appendTo("body");
+			}).appendTo("body");    
 		});
 	</script>
+<<<<<<< HEAD
+=======
+	<script src="assets/js/jquery.js"></script>
+
+	<!-- popper js -->
+	<script src="assets/js/popper.min.js"></script>
+
+	<!--bootstrap.min.js-->
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+	<!--Custom JS-->
+	<script src="assets/js/custom.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+>>>>>>> parent of 1a62b5a... Update membermap.php
 </body>
 </html>
