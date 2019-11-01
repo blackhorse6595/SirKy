@@ -89,7 +89,7 @@
 <?php include ("connect.php") ;
 
 //ส่วนคำสั่ง SQL เพื่อสั่งดึงข้อมูล
- $data = mysqli_query($con,"SELECT * FROM username") 
+ $data = mysqli_query($con,"SELECT * FROM help") 
  or die($comysqli_error());
  ?>
  <table style="width:50%" border=1 align ="center">
@@ -109,11 +109,12 @@
 
 	
 	<tr>
-	<td><?php echo $info['user']; ?></td> 
-    <td><?php echo $info['password']; ?></td>  
-    <td><?php echo $info['name']; ?></td> 
-	<td><?php echo $info['lastname']; ?></td>  
-	<td><?php echo $info['type']; ?></td> 
+	<td><?php echo $info['id']; ?></td> 
+    <td><?php echo $info['latitude']; ?></td>  
+    <td><?php echo $info['longitude']; ?></td> 
+	<td><?php echo $info['user']; ?></td>  
+	<td><?php echo $info['name']; ?></td> 
+    <td><?php echo $info['description']; ?></td> 
 	</tr> 
 	 <?php
  }
