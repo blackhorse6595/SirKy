@@ -7,13 +7,14 @@ session_start();
 
 
 if ($_SESSION['type'] != 'employee') {
-     header("Location: login.php");
-     exit;
+    header("Location: login.php");
+    exit;
 }
 ?>
+
 <head>
-  <!-- meta data -->
-  <meta charset="utf-8">
+    <!-- meta data -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -53,89 +54,101 @@ if ($_SESSION['type'] != 'employee') {
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	  <style>
-        img{
-            width:100%;
+    <style>
+        img {
+            width: 100%;
             height: 500px;
-            object-fit:cover;
-            background-repeat:no-repeat;
-            background-size:cover;
+            object-fit: cover;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     </style>
 
 </head>
+
 <body id="page-top">
 
     <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-  <section class="top-area">
+    <section class="top-area">
         <nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="#page-top">Khao Yai</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
-                </button><!--/button-->
+                </button>
+                <!--/button-->
                 <div class="collapse navbar-collapse nav-responsive-list" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="em-index.php">home</a>
-                        </li><!--/.nav-item-->
+                        </li>
+                        <!--/.nav-item-->
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="emmap.php">Point</a>
-                        </li><!--/.nav-item-->
+                        </li>
+                        <!--/.nav-item-->
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="showtable.php">Show User</a>
-                        </li><!--/.nav-item-->
-						<li class="nav-item">
+                        </li>
+                        <!--/.nav-item-->
+                        <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
-                        </li><!--/.nav-item-->
-                    </ul><!--/ul-->
-                </div><!--/.collapse-->
-            </div><!--/.container-->
-        </nav><!--/nav-->
-    </section><!--/.top-area-->
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA"> // api//
-    </script> 
+                        </li>
+                        <!--/.nav-item-->
+                    </ul>
+                    <!--/ul-->
+                </div>
+                <!--/.collapse-->
+            </div>
+            <!--/.container-->
+        </nav>
+        <!--/nav-->
+    </section>
+    <!--/.top-area-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA">
+        // api//
+    </script>
     <style type="text/css">
-/* css สำหรับ div คลุม google map อีกที */
-#map{
-    
-    position:relative;
-    width:100%;
-    height:400px;
-    margin:auto;    
-    
-}   
-/* css กำหนดความกว้าง ความสูงของแผนที่ */
-#map_canvas { 
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
-}
- </style>
- &nbsp;
-</p>
-<div id="map">
+        /* css สำหรับ div คลุม google map อีกที */
+        #map {
 
-  <div id="map_canvas">&nbsp;</div>
-</div>
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: auto;
+
+        }
+
+        /* css กำหนดความกว้าง ความสูงของแผนที่ */
+        #map_canvas {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+    </style>
+    &nbsp;
+    </p>
+    <div id="map">
+
+        <div id="map_canvas">&nbsp;</div>
+    </div>
     <div id="map"></div>
-    
+
     <script>
         /**
          * Create new map
          */
         var infowindow;
         var map;
-        var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
-        var purple_icon =  'http://maps.google.com/mapfiles/ms/icons/purple-dot.png' ;
+        var red_icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+        var purple_icon = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
         var locations = <?php get_confirmed_locations() ?>;
         var myOptions = {
             zoom: 15,
-            center: new google.maps.LatLng(14.439269, 101.372499 ),
+            center: new google.maps.LatLng(14.439269, 101.372499),
             mapTypeId: 'roadmap'
 
         };
@@ -154,7 +167,7 @@ if ($_SESSION['type'] != 'employee') {
          * @param {!number} lng Longitude.
          * @return {string} Concatenated marker id.
          */
-        var getMarkerUniqueId= function(lat, lng) {
+        var getMarkerUniqueId = function(lat, lng) {
             return lat + '_' + lng;
         };
 
@@ -181,19 +194,19 @@ if ($_SESSION['type'] != 'employee') {
                 map: map,
                 animation: google.maps.Animation.DROP,
                 id: 'marker_' + markerId,
-                html: "    <div id='info_"+markerId+"'>\n" +
-                "         <table class=\"map1\">\n" +
-                "            <tr>\n" +
-                "                <td><a>Description:</a></td>\n" +
-                "                <td><textarea  id='manual_description' placeholder='Description'></textarea></td></tr>\n" +
-                "            <tr><td></td><td><input type='button' value='Save' onclick='saveData("+lat+","+lng+")'/></td></tr>\n" +
-                "        </table>\n" +
-                "    </div>"
+                html: "    <div id='info_" + markerId + "'>\n" +
+                    "         <table class=\"map1\">\n" +
+                    "            <tr>\n" +
+                    "                <td><a>Description:</a></td>\n" +
+                    "                <td><textarea  id='manual_description' placeholder='Description'></textarea></td></tr>\n" +
+                    "            <tr><td></td><td><input type='button' value='Save' onclick='saveData(" + lat + "," + lng + ")'/></td></tr>\n" +
+                    "        </table>\n" +
+                    "    </div>"
             });
             markers[markerId] = marker; // cache marker in markers object
             bindMarkerEvents(marker); // bind right click event to marker
             bindMarkerinfo(marker); // bind infowindow with click event to marker
-            
+
         });
 
         /**
@@ -201,7 +214,7 @@ if ($_SESSION['type'] != 'employee') {
          * @param {!google.maps.Marker} marker A google.maps.Marker instance that the handler will binded.
          */
         var bindMarkerinfo = function(marker) {
-            google.maps.event.addListener(marker, "click", function (point) {
+            google.maps.event.addListener(marker, "click", function(point) {
                 var markerId = getMarkerUniqueId(point.latLng.lat(), point.latLng.lng()); // get marker id by using clicked point's coordinate
                 var marker = markers[markerId]; // find marker
                 infowindow = new google.maps.InfoWindow();
@@ -216,7 +229,7 @@ if ($_SESSION['type'] != 'employee') {
          * @param {!google.maps.Marker} marker A google.maps.Marker instance that the handler will binded.
          */
         var bindMarkerEvents = function(marker) {
-            google.maps.event.addListener(marker, "rightclick", function (point) {
+            google.maps.event.addListener(marker, "rightclick", function(point) {
                 var markerId = getMarkerUniqueId(point.latLng.lat(), point.latLng.lng()); // get marker id by using clicked point's coordinate
                 var marker = markers[markerId]; // find marker
                 removeMarker(marker, markerId); // remove it
@@ -232,32 +245,49 @@ if ($_SESSION['type'] != 'employee') {
             marker.setMap(null); // set markers setMap to null to remove it from map
             delete markers[markerId]; // delete marker instance from markers object
         };
-
+        var marker, info;
+        $.getJSON("jsondata.php", function(jsonObj) {
+            $.each(jsonObj, function(i, item) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(item.latitude, item.longitude),
+                    map: map,
+                });
+                info = new google.maps.InfoWindow();
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        info.setContent(item.name);
+                        info.open(maps, marker);
+                    }
+                })(marker, i));
+            });
+        });
+        
 
         /**
          * loop through (Mysql) dynamic locations to add markers to map.
          */
-        var i ; var confirmed = 0;
+        var i;
+        var confirmed = 0;
         for (i = 0; i < locations.length; i++) {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
-                icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
+                icon: locations[i][4] === '1' ? red_icon : purple_icon,
                 html: "<div>\n" +
-                "<table class=\"map1\">\n" +
-                "<tr>\n" +
-                "<td><a>รายละเอียด:</a></td>\n" +
-                "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][3]+"</textarea></td></tr>\n" +
-                "  <td><input type='button' value='Delete Point' onclick='delData("+ locations[i][0] +")'/></td> </table>\n" +
-               
-                "</div>"
+                    "<table class=\"map1\">\n" +
+                    "<tr>\n" +
+                    "<td><a>รายละเอียด:</a></td>\n" +
+                    "<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[i][3] + "</textarea></td></tr>\n" +
+                    "  <td><input type='button' value='Delete Point' onclick='delData(" + locations[i][0] + ")'/></td> </table>\n" +
+
+                    "</div>"
             });
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                     infowindow = new google.maps.InfoWindow();
-                    confirmed =  locations[i][4] === '1' ?  'checked'  :  0;
-                    $("#confirmed").prop(confirmed,locations[i][4]);
+                    confirmed = locations[i][4] === '1' ? 'checked' : 0;
+                    $("#confirmed").prop(confirmed, locations[i][4]);
                     $("#id").val(locations[i][0]);
                     $("#description").val(locations[i][3]);
                     $("#form").show();
@@ -272,19 +302,19 @@ if ($_SESSION['type'] != 'employee') {
          * @param lat  A latitude of marker.
          * @param lng A longitude of marker.
          */
-        function saveData(lat,lng) {
+        function saveData(lat, lng) {
             var description = document.getElementById('manual_description').value;
             var url = 'locations_model.php?add_location&description=' + description + '&lat=' + lat + '&lng=' + lng;
             downloadUrl(url, function(data, responseCode) {
-                if (responseCode === 200  && data.length > 1) {
-                    var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate
+                if (responseCode === 200 && data.length > 1) {
+                    var markerId = getMarkerUniqueId(lat, lng); // get marker id by using clicked point's coordinate
                     var manual_marker = markers[markerId]; // find marker
                     manual_marker.setIcon(purple_icon);
                     infowindow.close();
                     infowindow.setContent("<div style=' color: green; font-size: 25px;'> Insert Complete!!</div>");
                     infowindow.open(map, manual_marker);
                     location.reload();
-                }else{
+                } else {
                     console.log(responseCode);
                     console.log(data);
                     infowindow.setContent("<div style='color: red; font-size: 25px;'>Inserting Errors</div>");
@@ -307,32 +337,34 @@ if ($_SESSION['type'] != 'employee') {
             request.send(null);
         }
 
-		function delData(id) {
-			 $.post("delmap.php",{id:id}, function(data){
-                 
-                    location.reload();
-                 
-                
-			  });
-    }
+        function delData(id) {
+            $.post("delmap.php", {
+                id: id
+            }, function(data) {
+
+                location.reload();
+
+
+            });
+        }
     </script>
 
-<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.js"></script>
 
-<!-- popper js -->
-<script src="assets/js/popper.min.js"></script>
+    <!-- popper js -->
+    <script src="assets/js/popper.min.js"></script>
 
-<!--bootstrap.min.js-->
-<script src="assets/js/bootstrap.min.js"></script>
+    <!--bootstrap.min.js-->
+    <script src="assets/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-<!--Custom JS-->
-<script src="assets/js/custom.js"></script>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--Custom JS-->
+    <script src="assets/js/custom.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>

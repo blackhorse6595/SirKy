@@ -48,6 +48,7 @@ function confirm_location(){
         die('Invalid query: ' . mysqli_error($con));
     }
 }
+
 function get_confirmed_locations(){
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
     if (!$con) {
