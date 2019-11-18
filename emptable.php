@@ -1,4 +1,4 @@
-<?php include ("connect.php") ; ?>
+<?php include("connect.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -338,8 +338,8 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Tables</h1>
           <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-                <?php $data = mysqli_query($con,"SELECT * FROM username") 
-                or die($comysqli_error()); ?>
+          <?php $data = mysqli_query($con, "SELECT * FROM username")
+            or die($comysqli_error()); ?>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -355,38 +355,37 @@
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>Type</th>
-                      
+
                     </tr>
                   </thead>
                   <tfoot>
-                  <tr>
+                    <tr>
                       <th>Username</th>
                       <th>Password</th>
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>Type</th>
-                      
+
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php
+                    <?php
 
-while($info = mysqli_fetch_array( $data )) 
-{ 
-   ?>
+                    while ($info = mysqli_fetch_array($data)) {
+                      ?>
 
-   
-   <tr>
-   <td><?php echo $info['user']; ?></td> 
-   <td><?php echo $info['password']; ?></td>  
-   <td><?php echo $info['name']; ?></td> 
-   <td><?php echo $info['lastname']; ?></td>  
-   <td><?php echo $info['type']; ?></td> 
-   </tr> 
-    <?php
-}
 
-?> 
+                      <tr>
+                        <td><?php echo $info['user']; ?></td>
+                        <td><?php echo $info['password']; ?></td>
+                        <td><?php echo $info['name']; ?></td>
+                        <td><?php echo $info['lastname']; ?></td>
+                        <td><?php echo $info['type']; ?></td>
+                      </tr>
+                    <?php
+                    }
+
+                    ?>
                   </tbody>
                 </table>
               </div>

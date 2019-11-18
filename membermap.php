@@ -1,6 +1,8 @@
 ﻿<?php require_once 'locations_model.php';?>
 <?php require_once 'connect.php'; ?>
-<?php SESSION_START(); ?>
+<?php SESSION_START(); 
+	
+	header('Content-Type: text/html; charset=utf-8');?>
 <?php
 if($_SESSION['type'] != 'member'){
 	header("Location: login.php");

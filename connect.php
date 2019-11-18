@@ -6,7 +6,8 @@ $password = "";
 $db ="khoayai";
 $con = new mysqli($host,$username,$password,$db);
 
- 
+
+
 #mysqli_close();
 ?>
  
