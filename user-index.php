@@ -1,5 +1,5 @@
 ﻿<?php
- include("connect.php");
+ require_once("connect.php");
 session_start();
 
 // เช็คว่า User ได้ผ่านการ Login มาหรือไม่ (ถ้าไม่ได้ Login มาให้ส่งต่อไปหน้าไหนก็ใส่ URL ลงไปครับ ตรงตำแหน่ง login.php)

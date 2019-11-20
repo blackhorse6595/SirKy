@@ -1,8 +1,8 @@
 <?php
 
-include 'locations_model.php';
+include('locations_model.php');
 
- include("connect.php");
+ require_once("connect.php");
 session_start();
 if ($_SESSION['type'] != 'ambulance') {
     header("Location: login.php");

@@ -1,5 +1,5 @@
 <?php
-require("connect.php");
+require_once("connect.php");
 
 // Gets data from URL parameters.
 if(isset($_GET['add_location'])) {

@@ -1,5 +1,5 @@
 <?php
-include_once("connect.php");
+require_once("connect.php");
 SESSION_START();
 if(isset($_POST['action']) && $_POST['action'] == "1"){
 	$_SESSION['lat'] = $_POST["lat"];

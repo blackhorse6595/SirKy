@@ -1,5 +1,5 @@
 <?php
-include_once("connect.php");
+require_once("connect.php");
 print_r($_REQUEST);
 $lat= $_REQUEST['myPosition_lat'];
 $lon = $_REQUEST['myPosition_lon'];

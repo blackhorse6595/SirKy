@@ -1,5 +1,5 @@
 <?php
- include("connect.php");
+ require_once("connect.php");
 session_start();
 
 
@@ -127,7 +127,7 @@ include 'locations_model.php';
             marker.setMap(null); // set markers setMap to null to remove it from map
             delete markers[markerId]; // delete marker instance from markers object
         };
-
+           
 
         /**
          * loop through (Mysql) dynamic locations to add markers to map.

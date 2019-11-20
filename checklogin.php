@@ -2,7 +2,7 @@
 session_start();
         if(isset($_POST['Username'])){
 				//connection
-                  include("connect.php");
+                  require_once("connect.php");
 				//รับค่า user & password
                   $Username = $_POST['Username'];
                   $Password = $_POST['Password'];

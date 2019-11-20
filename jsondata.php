@@ -1,15 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<? echo '<?xml version="1.0" encoding="UTF-8" ?>';?>
 <?php
-require("connect.php");
+require_once("connect.php");
 header('Content-Type : application/json');
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
    $strSQL = "select * from help";
@@ -23,5 +14,3 @@ header('Content-Type : application/json');
 
 
 ?>
-</body>
-</html>

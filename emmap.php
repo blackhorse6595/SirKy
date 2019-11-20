@@ -1,8 +1,8 @@
-<? echo '<?xml version="1.0" encoding="UTF-8" ?>'; ?>
+
 <?php
 include_once 'header.php';
 include 'locations_model.php';
-include("connect.php");
+require_once("connect.php");
 session_start();
 
 
