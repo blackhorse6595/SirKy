@@ -1,3 +1,4 @@
+<? echo '<?xml version="1.0" encoding="UTF-8" ?>'; ?>
 <?php
 include_once 'header.php';
 include 'locations_model.php';
@@ -245,23 +246,40 @@ if ($_SESSION['type'] != 'employee') {
             marker.setMap(null); // set markers setMap to null to remove it from map
             delete markers[markerId]; // delete marker instance from markers object
         };
-        var marker, info;
-        $.getJSON("jsondata.php", function(jsonObj) {
-            $.each(jsonObj, function(i, item) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(item.latitude, item.longitude),
-                    map: map,
-                });
-                info = new google.maps.InfoWindow();
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        info.setContent(item.name);
-                        info.open(maps, marker);
-                    }
-                })(marker, i));
+        var a = <?php load_marker() ?>;
+        var j;
+            for (j = 0; j < a.length; j++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(a[j][1], a[j][2]),
+                map: map,
+                
             });
-        });
-        
+
+            google.maps.event.addListener(marker, 'click', (function(marker, j) {
+                return function() {
+                    infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent(marker.html);
+                    infowindow.open(map, marker);
+                }
+            })(marker,j));
+        }
+        // var marker, info;
+        // $.getJSON("jsondata.php", function(jsonObj) {
+        //     $.each(jsonObj, function(i, item) {
+        //         marker = new google.maps.Marker({
+        //             position: new google.maps.LatLng(item.latitude, item.longitude),
+        //             map: map,
+        //         });
+        //         info = new google.maps.InfoWindow();
+        //         google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        //             return function() {
+        //                 info.setContent(item.name);
+        //                 info.open(maps, marker);
+        //             }
+        //         })(marker, i));
+        //     });
+        // });
+
 
         /**
          * loop through (Mysql) dynamic locations to add markers to map.
