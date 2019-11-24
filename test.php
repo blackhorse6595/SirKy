@@ -1,20 +1,12 @@
-﻿<?php require_once 'locations_model.php';?>
+<?php require_once 'locations_model.php';?>
 <?php require_once 'connect.php'; ?>
 <?php SESSION_START(); 
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
+	
 	header('Content-Type: text/html; charset=utf-8');?>
-<?php
-if($_SESSION['type'] != 'USER'){
-	header("Location: login.php");
-	exit;
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
