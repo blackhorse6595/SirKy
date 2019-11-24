@@ -252,6 +252,15 @@ if ($_SESSION['type'] != 'employee') {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(a[j][1], a[j][2]),
                 map: map,
+                html: "<div>\n" +
+                    "<table class=\"map1\">\n" +
+                    "<tr>\n" +
+                    "<td><a>รายละเอียด:</a></td>\n" +
+                    "<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[j][5] + "</textarea></td></tr>\n" +
+                    "  </table>\n" +
+
+                    "</div>"
+            
                 
             });
 

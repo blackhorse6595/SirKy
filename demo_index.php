@@ -176,7 +176,7 @@ $(function(){
 			value:"edit"
 		});		
 		$.post("jsondata.php",dataSend,function(response){
-			console.log(response);
+			
 			if(response != null){		
 				if(response[0].error!=null || response[0].success!=null){
 					var statusText = (response[0].error!=null)?response[0].error:response[0].success;
@@ -198,6 +198,7 @@ $(function(){
 			value:"add"
 		});
 		$.post("jsondata.php",dataSend,function(response){
+			
 			if(response != null){		
 				if(response[0].error!=null || response[0].success!=null){
 					var statusText = (response[0].error!=null)?response[0].error:response[0].success;
@@ -216,8 +217,10 @@ $(function(){
 		$.post("jsondata.php",{
 			action:'list',
 			page:s_page
+			
 		},function(response){
-			if(response != null && response.data.length > 0){
+			
+			if(response != null ){
 				$(".pagination").removeClass("hidden");
 				$(".show-list-data").removeClass("hidden");						
 				var rowData = $(".list-data").clone(true);
