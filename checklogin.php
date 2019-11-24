@@ -21,7 +21,7 @@ if (isset($_POST['Username'])) {
     $_SESSION["User"] = $row["Name"];
     $_SESSION["type"] = $row["Status"];
 
-    if ($_SESSION["type"] == "employee") { //ถ้าเป็น employee ให้กระโดดไปหน้า admin_page.php
+    if ($_SESSION["type"] == "employee") { //ถ้าเป็น employee ให้กระโดดไปหน้า em-index.php
 
       header("Location: em-index.php");
     }
@@ -30,7 +30,7 @@ if (isset($_POST['Username'])) {
       header("Location: user-index.php");
       
     }
-    if ($_SESSION["type"] == "ambulance") { //ถ้าเป็น ambulance ให้กระโดดไปหน้า admin_page.php
+    if ($_SESSION["type"] == "ambulance") { //ถ้าเป็น ambulance ให้กระโดดไปหน้า my_friend_location.php
 
       header("Location: my_friend_location.php");
     }
