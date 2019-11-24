@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V12</title>
+	<title>Khao Yai</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="image/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="image/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap1/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -28,34 +28,30 @@
 	<div class="limiter"></div>
 		<div class="container-login100" style="background-image: url('image/img-01.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">
-				<form class="login100-form validate-form" name="frmlogin"  method="post" action="checklogin.php">
+				<form class="login100-form validate-form" name="frmforgetPassword"  method="post" action="SendPassword.php">
 					<div class="login100-form-avatar">
-						<img src="image/avatar-01.png" alt="AVATAR">
+						<img src="image/avatar-01.png" alt="AVATAR" onclick="window.location='index.html'">
 					</div>
 
 					<span class="login100-form-title p-t-20 p-b-45">
-					Khao Yai National Park
+                    Khao Yai National Park
+                    <br>
+                    Please Input Email
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-						<input class="input100" id="Username" type="text" name="Username" placeholder="Username">
+				
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Email is required">
+						<input class="input100" id="txtEmail" type="text" name="txtEmail" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user"></i>
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" id = "Password" type="password" name="Password" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock"></i>
-						</span>
-					</div>
-
 					<div class="container-login100-form-btn p-t-10">
 						<button class="login100-form-btn" >
-							Login
+							Submit
 						</button></a>
 					</div>
 					<div class="text-center w-full">
@@ -65,7 +61,7 @@
 						</a>
 					</div>
 					<div class="text-center w-full p-t-25 p-b-230">
-						<a href="#" class="txt1">
+						<a href="ForgetPassword.php" class="txt1">
 							Forgot Username / Password?
 						</a>
 					</div>
