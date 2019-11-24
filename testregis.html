@@ -28,17 +28,18 @@
 	<div class="limiter"></div>
 		<div class="container-login100" style="background-image: url('image/img-01.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">
-				<form class="login100-form validate-form" name="frmlogin"  method="post" action="checklogin.php">
+				<form class="login100-form validate-form" name="frmregis"  method="post" action="save_register.php">
 					<div class="login100-form-avatar">
-						<img src="image/avatar-01.png" alt="AVATAR">
+						<img src="image/avatar-01.png" alt="ICON">
 					</div>
 
 					<span class="login100-form-title p-t-20 p-b-45">
-					Khao Yai National Park
+                    Khao Yai National Park 
+                    Register
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-						<input class="input100" id="Username" type="text" name="Username" placeholder="Username">
+						<input class="input100" id="txtUsername" type="text" name="txtUsername" placeholder="Username">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user"></i>
@@ -46,10 +47,38 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" id = "Password" type="password" name="Password" placeholder="Password">
+						<input class="input100" id = "  " type="password" name="txtPassword" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
+						</span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Confirm-Password is required">
+						<input class="input100" id = "txtConPassword" type="password" name="txtConPassword" placeholder="ConfirmPassword">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Name is required">
+						<input class="input100" id="txtName" type="text" name="txtName" placeholder="Name">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Lastname is required">
+						<input class="input100" id="txtLastname" type="text" name="txtLastname" placeholder="Lastname">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Email is required">
+						<input class="input100" id="txtEmail" type="text" name="txtEmail" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
 						</span>
 					</div>
 

@@ -1,4 +1,6 @@
 <?php
+
+	session_start();
 	require_once("connect.php");
 	
 	
@@ -25,13 +27,20 @@
 		echo "Please input Name!";
 		exit();	
 	}	
-	if(trim($_POST["txtLastName"]) == "")
+	if(trim($_POST["txtLastname"]) == "")
 	{
-		echo "Please input LastName!";
+		echo "Please input Lastname!";
 		exit();	
 	}	
-	
-	$strSQL = "SELECT * FROM username WHERE user = '".trim($_POST['txtUsername'])."' ";
+
+
+	if(trim($_POST["txtEmail"]) == "")
+	{
+		echo "Please input Email!";
+		exit();	
+	}	
+
+	$strSQL = "SELECT * FROM member WHERE Username = '".trim($_POST['txtUsername'])."' ";
 	$objQuery = mysqli_query($con,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery);
 	if($objResult)
@@ -41,14 +50,27 @@
 	else
 	{	
 		
-		$strSQL = "INSERT INTO username (user,password,name,lastname,type) VALUES ('".$_POST["txtUsername"]."', 
-		'".$_POST["txtPassword"]."','".$_POST["txtName"]."','".$_POST["txtLastName"]."','".$_POST["ddlStatus"]."')";
+		$strSQL = "INSERT INTO member (Username,Password,Name,Lastname,Email,Status,SID,Active) VALUES ('".$_POST["txtUsername"]."', 
+		'".$_POST["txtPassword"]."','".$_POST["txtName"]."','".$_POST["txtLastname"]."','".$_POST["txtEmail"]."','USER','".session_id()."','No')";
 		$objQuery = mysqli_query($con,$strSQL);
 		
-		echo "Register Completed!<br>";		
+		$Uid = mysqli_insert_id($con);
+		echo "Register Completed!<br>Please check your email to activate account";		
+
+		$strTo = $_POST["txtEmail"];
+		$strSubject = "Activate Member Account";
+		$strHeader = "Content-type: text/html; charset=windows-874\n"; // or UTF-8 //
+		$strHeader .= "From: webmaster@thaicreate.com\nReply-To: webmaster@thaicreate.com";
+		$strMessage = "";
+		$strMessage .= "Welcome : ".$_POST["txtName"]."".$_POST["txtLastname"]."<br>";
+		$strMessage .= "=================================<br>";
+		$strMessage .= "Activate account click here.<br>";
+		$strMessage .= "https://www.thaicreate.com/activate.php?sid=".session_id()."&uid=".$Uid."<br>";
+		$strMessage .= "=================================<br>";
+		$strMessage .= "ThaiCreate.Com<br>";
+
+		$flgSend = mail($strTo,$strSubject,$strMessage,$strHeader); 
 	
-		echo "<br> Go to <a href='index.html'>Login page</a>";
-		
 	}
 
 	mysqli_close($con);
