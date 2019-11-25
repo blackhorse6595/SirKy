@@ -16,7 +16,9 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 </head>
 
 <body>
-
+<?php 
+		  $_SESSION["sid"]= session_id() ;
+		  ?>
 
 
 
@@ -110,9 +112,7 @@ data-target="#exampleModal"  >New User</button>
             <label for="Status" class="control-label">Status:</label>
             <input type="text" class="form-control" id="Status" name="Status" autocomplete="off">
 		  </div>
-		  <?php 
-		  $_SESSION["sid"]= session_id() ;
-		  ?>
+		
                              
         </form>
       </div>
@@ -190,7 +190,7 @@ $(function(){
 					}					
 				}
 			}
-		});		
+		});
 	}
 	dataList.addData = function(dataSend){
 		dataSend.push({
@@ -198,8 +198,7 @@ $(function(){
 			value:"add"
 		});
 		$.post("jsondata.php",dataSend,function(response){
-			
-			if(response != null){		
+			if(response != null){
 				if(response[0].error!=null || response[0].success!=null){
 					var statusText = (response[0].error!=null)?response[0].error:response[0].success;
 					$('#exampleModal').modal('toggle')
@@ -217,10 +216,9 @@ $(function(){
 		$.post("jsondata.php",{
 			action:'list',
 			page:s_page
-			
 		},function(response){
-			
-			if(response != null ){
+			console.log(response);
+			if(response != null){
 				$(".pagination").removeClass("hidden");
 				$(".show-list-data").removeClass("hidden");						
 				var rowData = $(".list-data").clone(true);

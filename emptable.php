@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+<?php session_start(); ?>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -156,7 +157,7 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
+    
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
@@ -337,7 +338,9 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          
+          <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal"  >Add User</button> 
+          
           <?php $data = mysqli_query($con, "SELECT * FROM username")
             or die($comysqli_error()); ?>
           <!-- DataTales Example -->
@@ -454,7 +457,73 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+ 
 
+ 
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New User</h4>
+      </div>
+      <div class="modal-body">
+        <form id="form_user" method ="post" action ="test_ajax.php">
+          <div class="form-group">
+            <label for="user-name" class="control-label">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="user-pass" class="control-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="Name" class="control-label">Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name" autocomplete="off">
+		  </div>
+		  <div class="form-group">
+            <label for="Lastname" class="control-label">Lastname:</label>
+            <input type="text" class="form-control" id="Lastname" name="Lastname" autocomplete="off">
+		  </div>
+		  <div class="form-group">
+            <label for="Email" class="control-label">Email:</label>
+            <input type="text" class="form-control" id="Email" name="Email" autocomplete="off">
+      </div>
+      
+		
+                          
+      
+      </div>
+      </form>
+      <?php 
+		  $_SESSION["sid"]= session_id() ;
+		  ?>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-add" onClick="" id = "btnadd"  >Add User</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  $(document).ready(function(){
+    $('#btnadd').click(function(){
+      $.ajax({
+      method: "POST",
+      url: "test_ajax.php",
+      data:  $("#form_user").serialize()
+      
+      
+    }); 
+    });
+    
+  
+  });
+  </script>
 </body>
 
 </html>

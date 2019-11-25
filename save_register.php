@@ -15,7 +15,7 @@
 <body>
 <?php
 
-session_start();
+session_start($sid);
 require_once("connect.php");
 
 

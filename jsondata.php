@@ -20,7 +20,7 @@ if (isset($_POST['action']) && $_POST['action'] == "list") {
 	$sql = "select * from member";
 
 	// รายการต่อไปนี้ไม่ต้องเปลี่ยนค่า
-	$result = $mysqli->query($sql);
+	$result = $con->query($sql);
 	if ($result && $result->num_rows > 0) { // มีรายการข้อมูล
 		$total = $result->num_rows; // นับจำนวนรายการทั้งหมดแล้วเก็บในตัวแปร $total
 	}
@@ -35,7 +35,7 @@ if (isset($_POST['action']) && $_POST['action'] == "list") {
 		LIMIT " . $start_page . "," . $per_page . "
 	";
 	$i = 0;
-	$result = $mysqli->query($sql);
+	$result = $con->query($sql);
 	if ($result && $result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
 			$i++;
@@ -76,7 +76,7 @@ if (isset($_POST['action']) && $_POST['action'] == "item") {
 		$sql = "
 		 SELECT * FROM member WHERE UserID='" . $_POST['chk_user_id'] . "'
 		";
-		$result = $mysqli->query($sql);
+		$result = $con->query($sql);
 		if ($result && $result->num_rows > 0) {
 			$row = $result->fetch_assoc();
 			$json_data['data'][] = array(
@@ -109,8 +109,8 @@ if (isset($_POST['action']) && $_POST['action'] == "delete") {
 		$sql = "
 		 DELETE FROM member WHERE UserID='" . $_POST['del_user_id'] . "'
 		";
-		$result = $mysqli->query($sql);
-		if ($result && $mysqli->affected_rows > 0) {
+		$result = $con->query($sql);
+		if ($result && $con->affected_rows > 0) {
 			$_success_msg = "Delete user data successful!";
 		} else {
 			$_error_msg = "Eror, please try again!";
@@ -144,9 +144,9 @@ if (isset($_POST['action']) && $_POST['action'] == "edit") {
 		Status='" . $_POST['Status'] . "'
 		WHERE Username=" . $_POST['Username'] . "		
 		";
-		$result = $mysqli->query($sql);
+		$result = $con->query($sql);
 		if ($result) {
-			if ($mysqli->affected_rows > 0) {
+			if ($con->affected_rows > 0) {
 				$_success_msg = "Change user data successful!";
 			} else {
 				$_success_msg = "Update user successful!";
@@ -171,20 +171,31 @@ if (isset($_POST['action']) && $_POST['action'] == "add") {
 	$_error_msg = null;
 	$_success_msg = null;
 
-	$sql = "
-	INSERT INTO member SET 
-	Username ='" . $_POST['username'] . "',
-	Password ='" . $_POST['password'] . "',
-	Name='" . $_POST['Name'] . "',
-	Lastame='" . $_POST['LastName'] . "',
-	Email='" . $_POST['Email'] . "',
-	Status='" . $_POST['Status'] . "',
-	SID='" . $_SESSION["sid"] . "'	,
-	Active = 'Yes'	
-	";
-	$result = $mysqli->query($sql);
-	if ($result && $mysqli->affected_rows > 0) {
-		$insert_userID = $mysqli->insert_id;
+	// $sql = "
+	// INSERT INTO member SET 
+	// Username ='" . $_POST['username'] . "',
+	// Password ='" . $_POST['password'] . "',
+	// Name='" . $_POST['Name'] . "',
+	// Lastame='" . $_POST['LastName'] . "',
+	// Email='" . $_POST['Email'] . "',
+	// Status='" . $_POST['Status'] . "',
+	// SID='" . $_SESSION["sid"] . "'	,
+	// Active = 'Yes'	
+	// ";
+	echo "123142";
+	exit;
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	$name = $_POST['Name'];
+	$lname = $_POST['LastName'];
+	$email = $_POST['Email'];
+	$status = $_POST['Status'];
+	$sid = $_SESSION['sid'];
+	$active = 'Yes';
+	$sql = "INSERT INTO member VALUES(NULL, '$username', '$password', '$name', '$lname', '$Email', $status', '$sid', '$active')";
+	$result = $con->query($sql);
+	if ($result && $con->affected_rows > 0) {
+		$insert_userID = $con->insert_id;
 		$_success_msg = "Add new user successful!";
 	} else {
 		$_error_msg = "Eror, please try again!";
