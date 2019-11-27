@@ -52,28 +52,7 @@ if ($_SESSION['type'] != 'employee') {
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <style>
-		img{
-			width:100%;
-			height: 500px;
-			object-fit:cover;
-			background-repeat:no-repeat;
-			background-size:cover;
-		}
-		#contain_map{
-			position:relative;
-			width:75%;
-			height:200px;
-			margin:auto;
-		}
-		/* css กำหนดความกว้าง ความสูงของแผนที่ */
-		#map_canvas {
-			overflow:hidden;
-			padding-bottom:56.25%;
-			position:relative;
-			height:0;
-		}
-	</style>
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <style>
@@ -132,7 +111,25 @@ if ($_SESSION['type'] != 'employee') {
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA">
         // api//
     </script>
+    <style type="text/css">
+        /* css สำหรับ div คลุม google map อีกที */
+        #map {
 
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: auto;
+
+        }
+
+        /* css กำหนดความกว้าง ความสูงของแผนที่ */
+        #map_canvas {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+    </style>
     &nbsp;
     </p>
     <div id="map">
@@ -150,120 +147,12 @@ if ($_SESSION['type'] != 'employee') {
         var red_icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
         var purple_icon = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
         var locations = <?php get_confirmed_locations() ?>;
-        GGM=new Object(google.maps);
-			directionShow=new  GGM.DirectionsRenderer({draggable:true});
-			directionsService = new GGM.DirectionsService();
-			geocoder = new GGM.Geocoder();
+        var myOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(14.439269, 101.372499),
+            mapTypeId: 'roadmap'
 
-			navigator.geolocation.getCurrentPosition(function(position){
-
-				var pos = new GGM.LatLng(position.coords.latitude,position.coords.longitude);
-
-				my_Latlng  = new GGM.LatLng(position.coords.latitude,position.coords.longitude);
-
-				initialTo=new GGM.LatLng(14.439424, 101.372485);
-				var my_mapTypeId=GGM.MapTypeId.ROADMAP;
-				var my_DivObj=$("#map_canvas")[0];
-
-				var myOptions = {
-					zoom: 13,
-					center: my_Latlng ,
-					mapTypeId:my_mapTypeId
-				};
-
-				map = new GGM.Map(my_DivObj,myOptions);
-				directionShow.setMap(map);
-				var infowindow = new GGM.InfoWindow({
-					map: map,
-					position: my_Latlng,
-					content: 'คุณอยู่ที่นี่.'
-				});
-
-				var my_Point = infowindow.getPosition();
-				map.panTo(my_Point);
-				$("#lat_value").val(my_Point.lat());
-				$("#lon_value").val(my_Point.lng());
-				$("#zoom_value").val(map.getZoom());
-				map.setCenter(my_Latlng);
-				inputSearch = $("#pac-input")[0];
-				map.controls[GGM.ControlPosition.TOP_LEFT].push(inputSearch);
-				infowindow = new GGM.InfoWindow();
-				my_Marker = new GGM.Marker({
-					map: map,
-					anchorPoint: new GGM.Point(0, -29)
-				});
-			});
-
-			navigator.geolocation.watchPosition(function(position){
-
-				var myPosition_lat=position.coords.latitude;
-				var myPosition_lon=position.coords.longitude;
-				var user = "<?php echo $_SESSION['username']?>";
-				var name = "<?php echo $_SESSION['User']?>";
-				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
-				$.post("addhelp.php", {
-					lat: myPosition_lat,
-					lon: myPosition_lon,
-					user: user,
-					name: name,
-					action: 1
-				});
-
-				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
-
-				my_Marker.setPosition(pos);
-
-				var my_Point = my_Marker.getPosition();
-				$("#lat_value").val(my_Point.lat());
-				$("#lon_value").val(my_Point.lng());
-				$("#zoom_value").val(map.getZoom());
-
-				map.panTo(pos);
-				map.setCenter(pos);
-				var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
-				var locations = <?php get_confirmed_locations() ?>; /*marker*/
-				var i ; var confirmed = 0;
-				for (i = 0; i < locations.length; i++) {
-					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-						map: map,
-						icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
-						html: "<div>\n" +
-						"<table class=\"map1\">\n" +
-						"<tr>\n" +
-						"<td><a>Description:</a></td>\n" +
-						"<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][3]+"</textarea></td></tr>\n" +
-						"</table>\n" +
-						"</div>"
-					});
-
-					google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						return function() {
-							infowindow = new google.maps.InfoWindow();
-							var  confirmed =  locations[i][4] === '1' ?  'checked'  :  0;
-							$("#confirmed").prop(confirmed,locations[i][4]);
-							$("#id").val(locations[i][0]);
-							$("#description").val(locations[i][3]);
-							$("#form").show();
-							infowindow.setContent(marker.html);
-							infowindow.open(map, marker);
-						}
-					})(marker, i));
-				}
-
-				function downloadUrl(url, callback) {
-					var request = window.ActiveXObject ?
-					new ActiveXObject('Microsoft.XMLHTTP') :
-					new XMLHttpRequest;
-					request.onreadystatechange = function() {
-						if (request.readyState == 4) {
-							callback(request.responseText, request.status);
-						}
-					};
-					request.open('GET', url, true);
-					request.send(null);
-				}
-			});
+        };
         map = new google.maps.Map(document.getElementById('map'), myOptions);
 
         /**

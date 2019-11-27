@@ -159,7 +159,7 @@ if($_SESSION['type'] != 'USER'){
 		var myPosition_lon;
 		function initialize() {
 			GGM=new Object(google.maps);
-			directionShow=new  GGM.DirectionsRenderer({draggable:true});
+			
 			directionsService = new GGM.DirectionsService();
 			geocoder = new GGM.Geocoder();
 
