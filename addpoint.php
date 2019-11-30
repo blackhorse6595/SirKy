@@ -12,10 +12,8 @@ if(isset($_POST['action']) && $_POST['action'] == "1"){
 	echo "aaaaa" ;
 	$lat = $_SESSION['lat'];
 	$lon = $_SESSION['lon'];
-	$user = $_SESSION['username'];
-	$name = $_SESSION['User'];
-	$data = $_POST['txt'];
-	$sql = "INSERT INTO help VALUES(NULL, '$lat','$lon','$user','$name','$data')";
+		$data = $_POST['txt'];
+	$sql = "INSERT INTO locations VALUES(NULL, '$lat','$lon','$data','1')";
 	echo "$sql" ;
 	$result = $con->query($sql);
 	if($result){

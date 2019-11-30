@@ -161,7 +161,7 @@
 
           <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">Add User</button>
 
-          <?php $data = mysqli_query($con, "SELECT * FROM member where Status = 'employee'")
+          <?php $data = mysqli_query($con, "SELECT * FROM member where Status = 'USER'")
             or die($comysqli_error()); ?>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -311,7 +311,7 @@
 
         </div>
         <div class="modal-body">
-          <form id="form_user" method="post" action="insert_ajax.php">
+          <form id="form_user" method="post" action="insert_ajax2.php">
             <div class="form-group">
               <label for="user-name" class="control-label">Username:</label>
               <input type="text" class="form-control" id="username" name="username" autocomplete="off">

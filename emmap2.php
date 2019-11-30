@@ -1,15 +1,15 @@
-﻿<?php require_once 'locations_model.php';?>
-<?php require_once 'connect.php'; ?>
+<?php require_once 'locations_model.php';
+ require_once 'connect.php'; ?>
 <?php SESSION_START(); 
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 	header('Content-Type: text/html; charset=utf-8');?>
 <?php
-if($_SESSION['type'] != 'USER'){
-	header("Location: login.html");
-	exit;
-}
+// if($_SESSION['type'] != 'employee'){
+// 	header("Location: login.html");
+// 	exit;
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +98,7 @@ if($_SESSION['type'] != 'USER'){
 							<a class="nav-link js-scroll-trigger" href="membermap.php">Show map</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
+							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">เพิ่ม Point</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
@@ -135,7 +135,7 @@ if($_SESSION['type'] != 'USER'){
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" onClick="dataList.addData($('#form_user').serializeArray());">ขอความช่วยเหลือ</button>
+						<button type="button" class="btn btn-primary" onClick="dataList.addData($('#form_user').serializeArray());">ยืนยัน</button>
 					</div>
 				</div>
 			</form>
@@ -210,7 +210,7 @@ if($_SESSION['type'] != 'USER'){
 				var user = "<?php echo $_SESSION['username']?>";
 				var name = "<?php echo $_SESSION['User']?>";
 				var pos = new GGM.LatLng(myPosition_lat,myPosition_lon);
-				$.post("addhelp.php", {
+				$.post("addpoint.php", {
 					lat: myPosition_lat,
 					lon: myPosition_lon,
 					user: user,
@@ -281,35 +281,23 @@ if($_SESSION['type'] != 'USER'){
 				// console.log(dataSend[0].value);
 				var txt = dataSend[0].value;
 				console.log(txt);
-				$.post("addhelp.php", {
+				$.post("addpoint.php", {
 					
 					txt: txt,
 					action: 2
-				})
-				.done(function() {
-					$('#form_user')[0].reset();
-					alert('ส่งข้อความช่วยเหลือสำเร็จ');
-					window.location.href='membermap.php';
-				})
-				.fail(function() {
-					alert("error");
-				})
-				.always(function() {
-					alert( "finished" );
 				});
-				/*$.post("addhelp.php",dataSend,function(response){
-					if(response != null){
-						if(response[0].error!=null || response[0].success!=null){
-							var statusText = (response[0].error!=null)?response[0].error:response[0].success;
-							$('#exampleModal').modal('toggle')
-							alert(statusText);
-						}
-						if(response[0].success!=null){
-							$('#form_user')[0].reset();
-							dataList.getList(0,true);
-						}
-					}
-				});*/
+				// .done(function() {
+				// 	$('#form_user')[0].reset();
+				// 	alert('เพิ่มตำแหน่งสำเร็จ');
+				// 	window.location.href='emmap2.php';
+				// })
+				// .fail(function() {
+				// 	alert("error");
+				// })
+				// .always(function() {
+				// 	alert( "finished" );
+				// });
+				
 			}
 		});
 		$(function(){

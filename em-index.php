@@ -1,12 +1,12 @@
 ﻿<?php
  require_once("connect.php");
 session_start();
-
+echo $_SESSION["type"];
 
 
 if ($_SESSION['type'] != 'employee') {
-     header("Location: login.php");
-     exit;
+    //  header("Location: login.php");
+    //  exit;
 }
 
 ?>
