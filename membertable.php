@@ -74,6 +74,16 @@
           <a class="nav-link" href="emmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="emmap1.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>เพิ่มตำแหน่งจากจุด</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="logout.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>ออกจากระบบ</span></a>
         </li>
 
         <!-- Divider -->
@@ -177,6 +187,7 @@
                         <th>Password</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Tel</th>
                         <th>Email</th>
 
                         <th>Edit</th>
@@ -191,6 +202,7 @@
                         <th>Password</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Tel</th>
                         <th>Email</th>
 
                         <th>Edit</th>
@@ -210,6 +222,7 @@
                           <td><?php echo $info['Password']; ?></td>
                           <td><?php echo $info['Name']; ?></td>
                           <td><?php echo $info['Lastname']; ?></td>
+                          <td><?php echo $info['Tel']; ?></td>
                           <td><?php echo $info['Email']; ?></td>
 
                           <?php $a = array();
@@ -329,6 +342,10 @@
               <input type="text" class="form-control" id="Lastname" name="Lastname" autocomplete="off">
             </div>
             <div class="form-group">
+                <label for="Lastname" class="control-label">Tel:</label>
+                <input type="text" class="form-control" id="Tel" name="Tel" autocomplete="off">
+              </div>
+            <div class="form-group">
               <label for="Email" class="control-label">Email:</label>
               <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" placeholder="@">
             </div>
@@ -377,6 +394,10 @@
                 <input type="text" class="form-control" id="Lastname" name="Lastname" autocomplete="off">
               </div>
               <div class="form-group">
+                <label for="Lastname" class="control-label">Tel:</label>
+                <input type="text" class="form-control" id="Tel" name="Tel" autocomplete="off">
+              </div>
+              <div class="form-group">
                 <label for="Email" class="control-label">Email:</label>
                 <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['email'][$i]; ?>">
               </div>
@@ -401,7 +422,7 @@
       $('#btnadd').click(function() {
         $.ajax({
           method: "POST",
-          url: "insert_ajax.php",
+          url: "insert_ajax2.php",
           data: $("#form_user").serialize()
 
 

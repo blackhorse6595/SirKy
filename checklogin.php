@@ -20,6 +20,9 @@ if (isset($_POST['Username'])) {
     $_SESSION["username"] = $row["Username"];
     $_SESSION["User"] = $row["Name"];
     $_SESSION["type"] = $row["Status"];
+    $_SESSION["Lastname"] = $row["Lastname"];
+    $_SESSION["email"] = $row["Email"];
+   $_SESSION['Tel'] = $row['Tel'];
 
     if ($_SESSION["type"] == "employee") { //ถ้าเป็น employee ให้กระโดดไปหน้า em-index.php
 

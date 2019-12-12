@@ -1,7 +1,7 @@
 ﻿<?php
  require_once("connect.php");
 session_start();
-echo $_SESSION["type"];
+
 
 
 if ($_SESSION['type'] != 'employee') {
@@ -94,9 +94,7 @@ if ($_SESSION['type'] != 'employee') {
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="emmap.php">Point</a>
                         </li><!--/.nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="showtable.php">Show User</a>
-                        </li><!--/.nav-item-->
+                      
 						<li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
                         </li><!--/.nav-item-->

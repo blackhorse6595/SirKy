@@ -15,7 +15,7 @@ function add_location(){
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
     if (!$con) {
         die('Not connected : ' . mysqli_connect_error());
-    }
+    }$con->set_charset("utf8");
     $lat = $_GET['lat'];
     $lng = $_GET['lng'];
     $description =$_GET['description'];
@@ -37,7 +37,7 @@ function confirm_location(){
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
     if (!$con) {
         die('Not connected : ' . mysqli_connect_error());
-    }
+    }$con->set_charset("utf8");
     $id =$_GET['id'];
     $confirmed =$_GET['confirmed'];
     // update location with confirm if admin confirm.
@@ -52,7 +52,7 @@ function load_marker(){
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
     if (!$con) {
         die('Not connected : ' . mysqli_connect_error());
-    }
+    }$con->set_charset("utf8");
     // update location with location_status if admin location_status.
     $sqldata = mysqli_query($con,"select * from help ");
 
@@ -74,12 +74,13 @@ function load_marker(){
 
 function get_confirmed_locations(){
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
+    
     if (!$con) {
         die('Not connected : ' . mysqli_connect_error());
-    }
+    }$con->set_charset("utf8");
     // update location with location_status if admin location_status.
     $sqldata = mysqli_query($con,"
-select id ,lat,lng,description,location_status as isconfirmed
+select id ,lat,lng,description,location_status,Type as isconfirmed
 from locations WHERE  location_status = 1
   ");
 
@@ -103,7 +104,7 @@ function get_all_locations(){
     $con=mysqli_connect ("localhost", 'root', '','khoayai');
     if (!$con) {
         die('Not connected : ' . mysqli_connect_error());
-    }
+    }$con->set_charset("utf8");
     // update location with location_status if admin location_status.
     $sqldata = mysqli_query($con,"
 select id ,lat,lng,description,location_status as isconfirmed

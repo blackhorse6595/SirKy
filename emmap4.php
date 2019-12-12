@@ -8,7 +8,7 @@ session_start();
 
 
 if ($_SESSION['type'] != 'employee') {
-    header("Location: login.php");
+    header("Location: login.html");
     exit;
 }
 ?>

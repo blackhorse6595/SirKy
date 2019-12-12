@@ -1,8 +1,8 @@
 <?php require_once("connect.php"); ?>
 
 <?php
-
-include 'locations_model.php';
+session_start(); 
+require_once 'locations_model.php';
 require_once("connect.php");
 if ($_SESSION['type'] != 'employee') {
   header("Location: login.html");
@@ -15,7 +15,7 @@ if ($_SESSION['type'] != 'employee') {
 <html lang="en">
 
 <head>
-  <?php session_start(); ?>
+  
   <link rel="icon" type="image/png" href="image/icons/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,11 +67,13 @@ if ($_SESSION['type'] != 'employee') {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="em-index.php">
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
-        <div class="sidebar-brand-text mx-3">Khao Yai </div>
+        <div class="sidebar-brand-text mx-3">Khao Yai 
+        <br><?php echo $_SESSION['User']; ?>
+      </div>
       </a>
 
       <!-- Divider -->
@@ -107,6 +109,16 @@ if ($_SESSION['type'] != 'employee') {
           <a class="nav-link" href="emmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="emmap1.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>เพิ่มตำแหน่งจากจุด</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="logout.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>ออกจากระบบ</span></a>
         </li>
 
 
@@ -318,7 +330,7 @@ if ($_SESSION['type'] != 'employee') {
                     "<table class=\"map1\">\n" +
                     "<tr>\n" +
                     "<td><a>รายละเอียด:</a></td>\n" +
-                    "<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[j][5] + "</textarea></td></tr>\n" +
+                    "<td><textarea disabled id='manual_description' placeholder='Description'>" + a[j][5] + "</textarea></td></tr>\n" +
                     "  </table>\n" +
 
                     "</div>"
@@ -482,37 +494,7 @@ if ($_SESSION['type'] != 'employee') {
 
 
 
-  <script>
-    $(document).ready(function() {
-      $('#btnadd').click(function() {
-        $.ajax({
-          method: "POST",
-          url: "insert_ajax.php",
-          data: $("#form_user").serialize()
-
-
-        });
-      });
-    });
-    <?php for ( $i = 0; $i<sizeof($_SESSION['a'])  ; $i++) {    ?>
-      
-    $(document).ready(function() {
-     
-        
-        // console.log(i);
-      $('#btnedit<?php echo $i; ?>').click(function() {
-        $.ajax({
-          method: "POST",
-          url: "Edit_ajax.php",
-          data: $("#edit_user<?php echo $i; ?>").serialize()
-
-
-        });
-      });
-    
-    });  
-  <?php  } ?>//for
-  </script>
+  
 </body>
 
 </html>

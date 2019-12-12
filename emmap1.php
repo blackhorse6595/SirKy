@@ -1,7 +1,8 @@
 <?php require_once("connect.php");
  session_start();
 require_once ("locations_model.php");
-
+	
+header('Content-Type: text/html; charset=utf-8');
 if($_SESSION['type'] != 'employee'){
 	header("Location: login.html");
 	exit;
@@ -14,7 +15,8 @@ if($_SESSION['type'] != 'employee'){
 <head>
   
   <link rel="icon" type="image/png" href="image/icons/favicon.png" />
-  <meta charset="utf-8">
+	
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -35,18 +37,9 @@ if($_SESSION['type'] != 'employee'){
 </head>
 
 <body id="page-top">
-  
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA">
-        // api//
-    </script>
+
     <style>
-		img{
-			width:100%;
-			height: 500px;
-			object-fit:cover;
-			background-repeat:no-repeat;
-			background-size:cover;
-		}
+	
 		#contain_map{
 			position:relative;
 			width:75%;
@@ -69,7 +62,7 @@ if($_SESSION['type'] != 'employee'){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="em-index.php">
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
@@ -81,22 +74,10 @@ if($_SESSION['type'] != 'employee'){
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
-
-
       <!-- Divider -->
       <hr class="sidebar-divider">
-
       <!-- Heading -->
       <div class="sidebar-heading">
-
-
-
-
-
-
-
-
         <!-- Nav Item - Tables -->
         <li class="nav-item active">
           <a class="nav-link" href="emptable.php">
@@ -112,21 +93,23 @@ if($_SESSION['type'] != 'employee'){
           <a class="nav-link" href="emmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="emmap1.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>เพิ่มตำแหน่งจากจุด</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="logout.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>ออกจากระบบ</span></a>
         </li>
-        <li class="nav-item active">
-							<a class="nav-link" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-              <i class="fas fa-fw fa-table"></i><span>ขอความช่วยเหลือ</span></a>
-						</li>
-
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -139,6 +122,9 @@ if($_SESSION['type'] != 'employee'){
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+							
+			  <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span>เพิ่มจุดจากตำแหน่ง</span>	</button>
+						
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -148,27 +134,6 @@ if($_SESSION['type'] != 'employee'){
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-            </li>
 
 
 
@@ -321,14 +286,18 @@ if($_SESSION['type'] != 'employee'){
 				map.panTo(pos);
 				map.setCenter(pos);
 				var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
-				var locations = <?php get_confirmed_locations() ?>; /*marker*/
+				var locations = <?php get_confirmed_locations(); ?>; /*marker*/
 				var i ; var confirmed = 0;
+				
 				for (i = 0; i < locations.length; i++) {
+					var a = locations;
+					console.log(a);
 					marker = new google.maps.Marker({
 						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
 						map: map,
 						icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
-						html: "<div>\n" +
+						
+						html:  "<div>\n" +
 						"<table class=\"map1\">\n" +
 						"<tr>\n" +
 						"<td><a>Description:</a></td>\n" +
@@ -380,7 +349,7 @@ if($_SESSION['type'] != 'employee'){
 				.done(function() {
 					$('#form_user')[0].reset();
 					alert('เพิ่มตำแหน่งสำเร็จ');
-					window.location.href='emmap2.php';
+					window.location.href='emmap1.php';
 				})
 				.fail(function() {
 					alert("error");
@@ -407,7 +376,7 @@ if($_SESSION['type'] != 'employee'){
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 	<!--Custom JS-->
-	<script src="assets/js/custom.js"></script>
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -476,37 +445,7 @@ if($_SESSION['type'] != 'employee'){
 
 
 
-  <script>
-    $(document).ready(function() {
-      $('#btnadd').click(function() {
-        $.ajax({
-          method: "POST",
-          url: "insert_ajax.php",
-          data: $("#form_user").serialize()
 
-
-        });
-      });
-    });
-    <?php for ( $i = 0; $i<sizeof($_SESSION['a'])  ; $i++) {    ?>
-      
-    $(document).ready(function() {
-     
-        
-        // console.log(i);
-      $('#btnedit<?php echo $i; ?>').click(function() {
-        $.ajax({
-          method: "POST",
-          url: "Edit_ajax.php",
-          data: $("#edit_user<?php echo $i; ?>").serialize()
-
-
-        });
-      });
-    
-    });  
-  <?php  } ?>//for
-  </script>
 </body>
 
 </html>

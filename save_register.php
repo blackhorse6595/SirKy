@@ -98,8 +98,8 @@ if($objResult)
 else
 {	
 	
-	$strSQL = "INSERT INTO member (Username,Password,Name,Lastname,Email,Status,SID,Active) VALUES ('".$_POST["txtUsername"]."', 
-	'".$_POST["txtPassword"]."','".$_POST["txtName"]."','".$_POST["txtLastname"]."','".$_POST["txtEmail"]."','USER','".session_id()."','No')";
+	$strSQL = "INSERT INTO member (Username,Password,Name,Lastname,Te;,Email,Status,SID,Active) VALUES ('".$_POST["txtUsername"]."', 
+	'".$_POST["txtPassword"]."','".$_POST["txtName"]."','".$_POST["txtLastname"]."','".$_POST["txtTel"]."','".$_POST["txtEmail"]."','USER','".session_id()."','No')";
 	$objQuery = mysqli_query($con,$strSQL);
 	
 	$Uid = mysqli_insert_id($con);

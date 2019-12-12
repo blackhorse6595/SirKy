@@ -78,6 +78,7 @@ if($_SESSION['type'] != 'USER'){
 		}
 	</style>
 </head>
+
 <body id="page-top">
 	<section class="top-area">
 		<nav class="navbar navbar-expand-lg navbar-dark " id="mainNav">
@@ -99,6 +100,9 @@ if($_SESSION['type'] != 'USER'){
 						</li>
 						<li class="nav-item">
 							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#edituser" data-whatever="@mdo">แก้ไขข้อมูล</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
@@ -233,10 +237,16 @@ if($_SESSION['type'] != 'USER'){
 				var locations = <?php get_confirmed_locations() ?>; /*marker*/
 				var i ; var confirmed = 0;
 				for (i = 0; i < locations.length; i++) {
+					if( locations[i][5] == '2' ){
+						var ic = "image/2.png" ;
+					}else {
+						var ic = red_icon ;
+					}
+					
 					marker = new google.maps.Marker({
 						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
 						map: map,
-						icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
+						icon : ic ,
 						html: "<div>\n" +
 						"<table class=\"map1\">\n" +
 						"<tr>\n" +
@@ -289,7 +299,7 @@ if($_SESSION['type'] != 'USER'){
 				.done(function() {
 					$('#form_user')[0].reset();
 					alert('ส่งข้อความช่วยเหลือสำเร็จ');
-					window.location.href='membermap.php';
+					// window.location.href='membermap.php';
 				})
 				.fail(function() {
 					alert("error");
@@ -297,19 +307,7 @@ if($_SESSION['type'] != 'USER'){
 				.always(function() {
 					alert( "finished" );
 				});
-				/*$.post("addhelp.php",dataSend,function(response){
-					if(response != null){
-						if(response[0].error!=null || response[0].success!=null){
-							var statusText = (response[0].error!=null)?response[0].error:response[0].success;
-							$('#exampleModal').modal('toggle')
-							alert(statusText);
-						}
-						if(response[0].success!=null){
-							$('#form_user')[0].reset();
-							dataList.getList(0,true);
-						}
-					}
-				});*/
+			
 			}
 		});
 		$(function(){
@@ -319,6 +317,67 @@ if($_SESSION['type'] != 'USER'){
 			}).appendTo("body");
 		});
 	</script>
+		<!-- Edit Modal -->
+		<div class="modal fade" id="edituser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Edit User</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+          </div>
+          <div class="modal-body">
+            <form id="edit_user" method="post" action="edit_ajax.php">
+              <div class="form-group">
+                <label for="user-name" class="control-label">Username:</label>
+                <input type="text" class="form-control" id="username" readonly name="username" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['username']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="Name" class="control-label">Name:</label>
+                <input type="text" class="form-control" id="Name" name="Name" autocomplete="off" value="<?php echo $_SESSION['User']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="Lastname" class="control-label">Lastname:</label>
+                <input type="text" class="form-control" id="Lastname" name="Lastname" value="<?php echo $_SESSION['Lastname']; ?>" autocomplete="off">
+			  </div>
+			  <div class="form-group">
+                <label for="Tel" class="control-label">Tel:</label>
+                <input type="text" class="form-control" id="Tel" name="Tel" value="<?php echo $_SESSION['Tel']; ?>" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="Email" class="control-label">Email:</label>
+                <input type="Email" class="form-control" id="Email" readonly name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['email']; ?>">
+              </div>
+          </div>
+         
+
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btn-add" id="btnedit">Submit</button>
+          </div>
+           </form>
+        </div>
+      </div>
+	</div> 
+	<script>
+	 $(document).ready(function() {
+   $('#btnedit').click(function() {
+	 $.ajax({
+	   method: "POST",
+	   url: "Edit_ajax.php",
+	   data: $("#edit_user").serialize()
+
+
+	 });
+	 window.location.reload();
+   });
+ 
+ });  
+	</script>
+    <!-- End Edit Modal -->
 	<script src="assets/js/jquery.js"></script>
 
 	<!-- popper js -->

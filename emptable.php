@@ -34,11 +34,13 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="em-index.php">
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
-        <div class="sidebar-brand-text mx-3">Khao Yai </div>
+        <div class="sidebar-brand-text mx-3">Khao Yai
+        <br><?php echo $_SESSION['User']; ?>    
+      </div>
       </a>
 
       <!-- Divider -->
@@ -74,8 +76,17 @@
           <a class="nav-link" href="emmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="emmap1.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>เพิ่มตำแหน่งจากจุด</span></a>
+		</li>
+		<li class="nav-item active">
+          <a class="nav-link" href="logout.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>ออกจากระบบ</span></a>
         </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -177,6 +188,7 @@
                         <th>Password</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Tel</th>
                         <th>Email</th>
 
                         <th>Edit</th>
@@ -191,6 +203,7 @@
                         <th>Password</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Tel</th>
                         <th>Email</th>
 
                         <th>Edit</th>
@@ -210,13 +223,17 @@
                           <td><?php echo $info['Password']; ?></td>
                           <td><?php echo $info['Name']; ?></td>
                           <td><?php echo $info['Lastname']; ?></td>
+                          <td><?php echo $info['Tel']; ?></td>
                           <td><?php echo $info['Email']; ?></td>
 
                           <?php $a = array();
                             $_SESSION['a'][$i] =  $info['Username'];
                             $_SESSION['i'][$i] =  $i;
                             $_SESSION['email'][$i] =  $info['Email'];
-
+                            $_SESSION['s'][$i] =  $info['Email'];
+                            echo $info['Email']."<br>";
+                            echo $_SESSION['email'][$i]."<br>" ;
+                            echo $_SESSION['s'][$i]."<br>" ;
                             ?>
                           <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal<?php echo $i; ?>" id="<? $info['Username']; ?> " name='Edit'>Edit User</button> </td>
                         </tr>
@@ -306,7 +323,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">New User</h4>
+          <h4 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลพนักงาน</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
         </div>
@@ -314,39 +331,38 @@
           <form id="form_user" method="post" action="insert_ajax.php">
             <div class="form-group">
               <label for="user-name" class="control-label">Username:</label>
-              <input type="text" class="form-control" id="username" name="username" autocomplete="off">
+              <input type="text" pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" class="form-control" id="username" name="username" required autocomplete="off" required>
             </div>
             <div class="form-group">
               <label for="user-pass" class="control-label">Password:</label>
-              <input type="password" class="form-control" id="password" name="password" autocomplete="off">
+              <input type="password" class="form-control"  pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป"  id="password" name="password" autocomplete="off" required>
             </div>
             <div class="form-group">
               <label for="Name" class="control-label">Name:</label>
-              <input type="text" class="form-control" id="Name" name="Name" autocomplete="off">
+              <input type="text" class="form-control" id="Name"  pattern="[A-Za-z0-9กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{8,}" title="ภาษาอังกฤษ ภาษาไทยหรือตัวเลข 8 ตัวขึ้นไป" name="Name" autocomplete="off" required>
             </div>
             <div class="form-group">
               <label for="Lastname" class="control-label">Lastname:</label>
-              <input type="text" class="form-control" id="Lastname" name="Lastname" autocomplete="off">
+              <input type="text" class="form-control" id="Lastname"  pattern="[A-Za-z0-9กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{8,}" title="ภาษาอังกฤษ ภาษาไทยหรือตัวเลข 8 ตัวขึ้นไป" name="Lastname" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="Lastname" class="control-label">Tel:</label>
+              <input type="tel" class="form-control" id="Tel" name="Tel" autocomplete="off"  pattern="[0-9]{10}" title="ตัวเลข 10 ตัว" required>
             </div>
             <div class="form-group">
               <label for="Email" class="control-label">Email:</label>
-              <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" placeholder="@">
+              <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" placeholder="" required>
             </div>
         </div>
-        </form>
-
-
-
-        <?php
-        $_SESSION["sid"] = session_id();
-        ?>
+      
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-add" onClick="" id="btnadd">Add User</button>
+          <button type="submit" class="btn btn-primary btn-add" onClick="" id="btnadd">Add User</button> 
         </div>
       </div>
     </div>
   </div>
+  </form>
   <!-- End Add Modal -->
   <?php for ($i = 0; $i < sizeof($_SESSION['a']); $i++) { ?>
     <!-- Edit Modal -->
@@ -359,6 +375,7 @@
 
           </div>
           <div class="modal-body">
+            
             <form id="edit_user<?php echo $i; ?>" method="post" action="edit_ajax.php">
               <div class="form-group">
                 <label for="user-name" class="control-label">Username:</label>
@@ -378,7 +395,7 @@
               </div>
               <div class="form-group">
                 <label for="Email" class="control-label">Email:</label>
-                <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['email'][$i]; ?>">
+                <input type="text" class="form-control" id="Email" name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['s'][$i]; ?>">
               </div>
           </div>
          
@@ -397,17 +414,17 @@
     <!-- End Edit Modal -->
 
   <script>
-    $(document).ready(function() {
-      $('#btnadd').click(function() {
-        $.ajax({
-          method: "POST",
-          url: "insert_ajax.php",
-          data: $("#form_user").serialize()
+    // $(document).ready(function() {
+    //   $('#btnadd').click(function() {
+    //     $.ajax({
+    //       method: "POST",
+    //       url: "insert_ajax.php",
+    //       data: $("#form_user").serialize()
 
 
-        });
-      });
-    });
+    //     });
+    //   });
+    // });
     <?php for ( $i = 0; $i<sizeof($_SESSION['a'])  ; $i++) {    ?>
       
     $(document).ready(function() {
