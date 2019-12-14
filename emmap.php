@@ -274,7 +274,13 @@ if ($_SESSION['type'] != 'employee') {
                     "            <tr>\n" +
                     "                <td><a>Description:</a></td>\n" +
                     "                <td><textarea  id='manual_description' placeholder='Description'></textarea></td></tr>\n" +
-                    "            <tr><td></td><td><input type='button' value='Save' onclick='saveData(" + lat + "," + lng + ")'/></td></tr>\n" +
+                    "            <tr><td>Type :</td><td><select id = 'Type'> <option value= '1'>โป่ง</option>" +
+                    " <option value= '2'>โค้งอันตราย</option> <option value= '3'>น้ำตก</option> <option value= '4'>ศูนย์บริการนักท่องเที่ยว</option> "+
+                    " <option value= '5'>ลานจอดรถ</option> <option value= '6'>จุดชมวิว</option>  <option value= '7'>แก่ง</option>   " +
+                    " <option value= '8'>ลานกางเต้นท์</option><option value= '9'>บ้านพัก</option> <option value= '10'>ศาล</option>  "+
+                    " <option value= '11'>ด่านตรวจ</option> <option value= '12'>ห้องน้ำ</option> <option value= '13'>เส้นทางศึกษาธรรมชาติ</option>    "+
+                    " <option value= '14'>อ่างเก็บน้ำ</option> <option value= '15'>ร้านอาหาร </option></select> "+
+                    " </select></td></tr><tr><td></td><td><input type='button' value='Save' onclick='saveData(" + lat + "," + lng + ")'/></td></tr>\n" +
                     "        </table>\n" +
                     "    </div>"
             });
@@ -385,7 +391,8 @@ if ($_SESSION['type'] != 'employee') {
          */
         function saveData(lat, lng) {
             var description = document.getElementById('manual_description').value;
-            var url = 'locations_model.php?add_location&description=' + description + '&lat=' + lat + '&lng=' + lng;
+            var Type = document.getElementById('Type').value;
+            var url = 'locations_model.php?add_location&description=' + description + '&lat=' + lat + '&lng=' + lng + '&Type='+ Type ;
             downloadUrl(url, function(data, responseCode) {
                 if (responseCode === 200 && data.length > 1) {
                     var markerId = getMarkerUniqueId(lat, lng); // get marker id by using clicked point's coordinate
@@ -394,7 +401,7 @@ if ($_SESSION['type'] != 'employee') {
                     infowindow.close();
                     infowindow.setContent("<div style=' color: green; font-size: 25px;'> Insert Complete!!</div>");
                     infowindow.open(map, manual_marker);
-                    location.reload();
+                    // location.reload();
                 } else {
                     console.log(responseCode);
                     console.log(data);
