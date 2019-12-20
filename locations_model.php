@@ -22,7 +22,7 @@ function add_location(){
     $Type =$_GET['Type'];
     // Inserts new row with place data.
     $query = sprintf("INSERT INTO locations " .
-        " (id, lat, lng, description) " .
+        " (id, lat, lng, description,Type) " .
         " VALUES (NULL, '%s', '%s', '%s', '%s');",
         mysqli_real_escape_string($con,$lat),
         mysqli_real_escape_string($con,$lng),

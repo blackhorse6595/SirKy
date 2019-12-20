@@ -231,9 +231,9 @@
                             $_SESSION['i'][$i] =  $i;
                             $_SESSION['email'][$i] =  $info['Email'];
                             $_SESSION['s'][$i] =  $info['Email'];
-                            echo $info['Email']."<br>";
-                            echo $_SESSION['email'][$i]."<br>" ;
-                            echo $_SESSION['s'][$i]."<br>" ;
+                            // echo $info['Email']."<br>";
+                            // echo $_SESSION['email'][$i]."<br>" ;
+                            // echo $_SESSION['s'][$i]."<br>" ;
                             ?>
                           <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal<?php echo $i; ?>" id="<? $info['Username']; ?> " name='Edit'>Edit User</button> </td>
                         </tr>

@@ -21,6 +21,8 @@ else {echo "success";}
 echo $sql;
 // unset($_SESSION['User']);
 $_SESSION['User'] =  $_POST["Name"] ;
+$_SESSION['Lastname'] = $_POST['Lastname'] ; 
+$_SESSION['Tel'] = $_POST['Tel'] ; 
 // echo  $_SESSION['User'] ;
 // echo "<script>window.location.href='membermap.php';</script>";
 ?>
