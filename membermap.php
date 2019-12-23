@@ -217,143 +217,158 @@ if ($_SESSION['type'] != 'USER') {
 
 			navigator.geolocation.watchPosition(function(position) {
 
-				var myPosition_lat = position.coords.latitude;
-				var myPosition_lon = position.coords.longitude;
-				var user = "<?php echo $_SESSION['username'] ?>";
-				var name = "<?php echo $_SESSION['User'] ?>";
-				var pos = new GGM.LatLng(myPosition_lat, myPosition_lon);
-				$.post("addhelp.php", {
-					lat: myPosition_lat,
-					lon: myPosition_lon,
-					user: user,
-					name: name,
-					action: 1
-				});
-
-				var pos = new GGM.LatLng(myPosition_lat, myPosition_lon);
-
-				my_Marker.setPosition(pos);
-
-				var my_Point = my_Marker.getPosition();
-				$("#lat_value").val(my_Point.lat());
-				$("#lon_value").val(my_Point.lng());
-				$("#zoom_value").val(map.getZoom());
-
-				map.panTo(pos);
-				map.setCenter(pos);
-				var red_icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-				var locations = <?php get_confirmed_locations() ?>; /*marker*/
-				var i;
-				var confirmed = 0;
-				for (i = 0; i < locations.length; i++) {
-					if (locations[i][5] =='1') {
-						var ic = "image/pong.png";
-					} else if (locations[i][5] == '2') {
-						var ic = "image/2.png";
-					} else if (locations[i][5] == '3') {
-						var ic = "image/waterfall.png";
-					} else if (locations[i][5] == '5') {
-						var ic = "image/park.png";
-					} else if (locations[i][5] == '4') {
-						var ic = "image/info.png";
-					} else if (locations[i][5] == '6') {
-						var ic = "image/viewpoint.png";
-					}else if (locations[i][5] == '7') {
-						var ic = "image/boat.png";
-					}  else if (locations[i][5] == '8') {
-						var ic = "image/tent.png";
-					}else if (locations[i][5] == '9') {
-						var ic = "image/home.png";
-					}else if (locations[i][5] == '10') {
-						var ic = "image/temple.png";
-					}else if (locations[i][5] == '11') {
-						var ic = "image/map.png";
-					}else if (locations[i][5] == '12') {
-						var ic = "image/toilet.png";
-					}else if (locations[i][5] == '13') {
-						var ic = "image/road.png";
-					}else if (locations[i][5] == '14') {
-						var ic = "image/lake.png";
-					}else if (locations[i][5] == '15') {
-						var ic = "image/food.png";
-					} else {
-						var ic = red_icon;
-					}
-
-					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-						map: map,
-						icon: ic,
-						html: "<div>\n" +
-							"<table class=\"map1\">\n" +
-							"<tr>\n" +
-							"<td><a>Description:</a></td>\n" +
-							"<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[i][3] + "</textarea></td></tr>\n" +
-							"</table>\n" +
-							"</div>"
+					var myPosition_lat = position.coords.latitude;
+					var myPosition_lon = position.coords.longitude;
+					var user = "<?php echo $_SESSION['username'] ?>";
+					var name = "<?php echo $_SESSION['User'] ?>";
+					var pos = new GGM.LatLng(myPosition_lat, myPosition_lon);
+					$.post("addhelp.php", {
+						lat: myPosition_lat,
+						lon: myPosition_lon,
+						user: user,
+						name: name,
+						action: 1
 					});
 
-					google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						return function() {
-							infowindow = new google.maps.InfoWindow();
-							var confirmed = locations[i][4] === '1' ? 'checked' : 0;
-							$("#confirmed").prop(confirmed, locations[i][4]);
-							$("#id").val(locations[i][0]);
-							$("#description").val(locations[i][3]);
-							$("#form").show();
-							infowindow.setContent(marker.html);
-							infowindow.open(map, marker);
-						}
-					})(marker, i));
-				}
+					var pos = new GGM.LatLng(myPosition_lat, myPosition_lon);
 
-				function downloadUrl(url, callback) {
-					var request = window.ActiveXObject ?
-						new ActiveXObject('Microsoft.XMLHTTP') :
-						new XMLHttpRequest;
-					request.onreadystatechange = function() {
-						if (request.readyState == 4) {
-							callback(request.responseText, request.status);
+					my_Marker.setPosition(pos);
+
+					var my_Point = my_Marker.getPosition();
+					$("#lat_value").val(my_Point.lat());
+					$("#lon_value").val(my_Point.lng());
+					$("#zoom_value").val(map.getZoom());
+
+				
+
+
+						map.panTo(pos);
+						map.setCenter(pos);
+						var red_icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+						var a = <?php load_am(); ?>  ;
+					
+					for (var j = 0; j < a.length; j++) {
+						var ic = "image/ambulance.png";
+						marker = new google.maps.Marker({
+							position: new google.maps.LatLng(a[j][3], a[j][4]),
+							map: map,
+							icon : ic
+
+
+						});
+					}
+						var locations = <?php get_confirmed_locations() ?>; /*marker*/
+						var i;
+						var confirmed = 0;
+						for (i = 0; i < locations.length; i++) {
+							if (locations[i][5] == '1') {
+								var ic = "image/pong.png";
+							} else if (locations[i][5] == '2') {
+								var ic = "image/2.png";
+							} else if (locations[i][5] == '3') {
+								var ic = "image/waterfall.png";
+							} else if (locations[i][5] == '5') {
+								var ic = "image/park.png";
+							} else if (locations[i][5] == '4') {
+								var ic = "image/info.png";
+							} else if (locations[i][5] == '6') {
+								var ic = "image/viewpoint.png";
+							} else if (locations[i][5] == '7') {
+								var ic = "image/boat.png";
+							} else if (locations[i][5] == '8') {
+								var ic = "image/tent.png";
+							} else if (locations[i][5] == '9') {
+								var ic = "image/home.png";
+							} else if (locations[i][5] == '10') {
+								var ic = "image/temple.png";
+							} else if (locations[i][5] == '11') {
+								var ic = "image/map.png";
+							} else if (locations[i][5] == '12') {
+								var ic = "image/toilet.png";
+							} else if (locations[i][5] == '13') {
+								var ic = "image/road.png";
+							} else if (locations[i][5] == '14') {
+								var ic = "image/lake.png";
+							} else if (locations[i][5] == '15') {
+								var ic = "image/food.png";
+							} else {
+								var ic = red_icon;
+							}
+
+							marker = new google.maps.Marker({
+								position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+								map: map,
+								icon: ic,
+								html: "<div>\n" +
+									"<table class=\"map1\">\n" +
+									"<tr>\n" +
+									"<td><a>Description:</a></td>\n" +
+									"<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[i][3] + "</textarea></td></tr>\n" +
+									"</table>\n" +
+									"</div>"
+							});
+
+							google.maps.event.addListener(marker, 'click', (function(marker, i) {
+								return function() {
+									infowindow = new google.maps.InfoWindow();
+									var confirmed = locations[i][4] === '1' ? 'checked' : 0;
+									$("#confirmed").prop(confirmed, locations[i][4]);
+									$("#id").val(locations[i][0]);
+									$("#description").val(locations[i][3]);
+									$("#form").show();
+									infowindow.setContent(marker.html);
+									infowindow.open(map, marker);
+								}
+							})(marker, i));
 						}
-					};
-					request.open('GET', url, true);
-					request.send(null);
+
+						function downloadUrl(url, callback) {
+							var request = window.ActiveXObject ?
+								new ActiveXObject('Microsoft.XMLHTTP') :
+								new XMLHttpRequest;
+							request.onreadystatechange = function() {
+								if (request.readyState == 4) {
+									callback(request.responseText, request.status);
+								}
+							};
+							request.open('GET', url, true);
+							request.send(null);
+						}
+					});
+			}
+			var dataList = {}
+			$(function() {
+				dataList.addData = function(dataSend) {
+					// console.log(dataSend);
+					// console.log(dataSend[0].value);
+					var txt = dataSend[0].value;
+					console.log(txt);
+					$.post("addhelp.php", {
+
+							txt: txt,
+							action: 2
+						})
+						.done(function() {
+							$('#form_user')[0].reset();
+							alert('ส่งข้อความช่วยเหลือสำเร็จ');
+							// window.location.href='membermap.php';
+						})
+						.fail(function() {
+							alert("error");
+						})
+						.always(function() {
+							alert("finished");
+						});
+
 				}
 			});
-		}
-		var dataList = {}
-		$(function() {
-			dataList.addData = function(dataSend) {
-				// console.log(dataSend);
-				// console.log(dataSend[0].value);
-				var txt = dataSend[0].value;
-				console.log(txt);
-				$.post("addhelp.php", {
-
-						txt: txt,
-						action: 2
-					})
-					.done(function() {
-						$('#form_user')[0].reset();
-						alert('ส่งข้อความช่วยเหลือสำเร็จ');
-						// window.location.href='membermap.php';
-					})
-					.fail(function() {
-						alert("error");
-					})
-					.always(function() {
-						alert("finished");
-					});
-
-			}
-		});
-		$(function() {
-			$("<script/>", {
-				"type": "text/javascript",
-				src: "//maps.google.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA&sensor=false&language=th&callback=initialize&libraries=places"
-			}).appendTo("body");
-			s
-		});
+			$(function() {
+				$("<script/>", {
+					"type": "text/javascript",
+					src: "//maps.google.com/maps/api/js?key=AIzaSyD0xTflD2TcRSIu_bQzF1Sa2xLMKPsMZLA&sensor=false&language=th&callback=initialize&libraries=places"
+				}).appendTo("body");
+				s
+			});
 	</script>
 	<!-- Edit Modal -->
 	<div class="modal fade" id="edituser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
