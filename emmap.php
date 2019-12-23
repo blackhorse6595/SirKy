@@ -328,10 +328,12 @@ if ($_SESSION['type'] != 'employee') {
             };
             var a = <?php load_marker() ?>;
             var j;
+            var icc = "image/help.png"
             for (j = 0; j < a.length; j++) {
               marker = new google.maps.Marker({
                 position: new google.maps.LatLng(a[j][1], a[j][2]),
                 map: map,
+                icon : icc,
                 html: "<div>\n" +
                   "<table class=\"map1\">\n" +
                   "<tr>\n" +

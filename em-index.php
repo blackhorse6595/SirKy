@@ -5,8 +5,8 @@ session_start();
 
 
 if ($_SESSION['type'] != 'employee') {
-    //  header("Location: login.php");
-    //  exit;
+     header("Location: login.html");
+     exit;
 }
 
 ?>
@@ -21,6 +21,8 @@ if ($_SESSION['type'] != 'employee') {
 
 
 <head>
+    <!-- For favicon png -->
+    <link rel="shortcut icon" type="image/icon" href="image/icons/favicon.png" />
     <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,8 +38,7 @@ if ($_SESSION['type'] != 'employee') {
 
     <!-- title of site -->
     <title>อุทยานแห่งชาติเขาใหญ่</title>
-    <!-- For favicon png -->
-    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png" />
+   
 
     <!--font-awesome.min.css-->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">

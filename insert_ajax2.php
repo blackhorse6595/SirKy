@@ -1,5 +1,7 @@
 <?php
 require_once('connect.php');
+session_start();
+$sid = session_id();
 $username = $_POST['username'];
 $password = $_POST['password'];
 $Name = $_POST['Name'];
@@ -19,7 +21,8 @@ if($result){?>
   <?php
 }else{
 $sql = "INSERT INTO member (Username,Password,Name,Lastname,Tel,Email,Status,SID,Active) VALUES ('".$username."','".$password."','".$Name."',
-'".$Lastname."','".$Tel."','".$Email."',User,NULL,'Yes')" ;
+'".$Lastname."','".$Tel."','".$Email."','User','".$sid."','Yes')" ;
+echo $sql;
 $query = mysqli_query($con,$sql);
 // $result =mysqli_fetch_array($query);
 if(!$query){ ?>

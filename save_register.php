@@ -15,9 +15,9 @@
 <body>
 <?php
 
-session_start($sid);
-require_once("connect.php");
 
+require_once("connect.php");
+session_start();
 
 if(trim($_POST["txtUsername"]) == "")
 {
@@ -98,10 +98,10 @@ if($objResult)
 else
 {	
 	
-	$strSQL = "INSERT INTO member (Username,Password,Name,Lastname,Te;,Email,Status,SID,Active) VALUES ('".$_POST["txtUsername"]."', 
+	$strSQL = "INSERT INTO member (Username,Password,Name,Lastname,Tel,Email,Status,SID,Active) VALUES ('".$_POST["txtUsername"]."', 
 	'".$_POST["txtPassword"]."','".$_POST["txtName"]."','".$_POST["txtLastname"]."','".$_POST["txtTel"]."','".$_POST["txtEmail"]."','USER','".session_id()."','No')";
 	$objQuery = mysqli_query($con,$strSQL);
-	
+	// echo $strSQL;
 	$Uid = mysqli_insert_id($con);
 	
 	
