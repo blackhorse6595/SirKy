@@ -339,6 +339,7 @@ if ($_SESSION['type'] != 'employee') {
                   "<tr>\n" +
                   "<td><a>รายละเอียด:</a></td>\n" +
                   "<td><textarea disabled id='manual_description' placeholder='Description'>" + a[j][5] + "</textarea></td></tr>\n" +
+                  "<tr><td><input type='button' class='btn btn-danger' value='Delete Point' onclick='delhelp(" + a[j][0] + ")'/></button></td></tr>"+
                   "  </table>\n" +
 
                   "</div>"
@@ -402,8 +403,8 @@ if ($_SESSION['type'] != 'employee') {
                   "<td><a>รายละเอียด:</a></td>\n" +
                   "<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[i][3] + "</textarea></td></tr>\n" +
                   
-                  "<tr> <td><input type='button' value='Delete Point' onclick='delData(" + locations[i][0] + ")'/></button></td>\n" +
-                  "<td><button type='button' onclick='updatepoint(" + locations[i][0]+ ")' />Edit Point</button></td></tr> </table> " +
+                  "<tr> <td><input type='button' class='btn btn-danger' value='Delete Point' onclick='delData(" + locations[i][0] + ")'/></button></td>\n" +
+                  "<td><button type='button' class='btn btn-primary' onclick='updatepoint(" + locations[i][0]+ ")' />Edit Point</button></td></tr> </table> " +
 
                   "</div>"
               });
@@ -489,6 +490,13 @@ if ($_SESSION['type'] != 'employee') {
 
               });
             }
+          function delhelp(id){
+            $.post("delhelp.php",{
+              id: id,
+            },function(data){
+              location.reload();
+            });
+          }
 
             function updatepoint(id,lata,lona){
               $.post("editmarker.php",{
