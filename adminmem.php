@@ -1,9 +1,9 @@
 <?php require_once("connect.php"); 
  session_start(); 
- if($_SESSION["type"] != "employee"){
-   session_destroy();
-   header('location:login.php');
- }
+//  if($_SESSION["type"] != "admin"){
+//    session_destroy();
+//    header('location:login.php');
+//  }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,17 +70,17 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item active">
-          <a class="nav-link" href="emptable.php">
+          <a class="nav-link" href="adminem.php">
             <i class="fas fa-fw fa-table"></i>
             <span>ข้อมูลพนักงาน</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="membertable.php">
+          <a class="nav-link" href="adminmem.php">
             <i class="fas fa-fw fa-table"></i>
             <span>ข้อมูลสมาชิก</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="emmap.php">
+          <a class="nav-link" href="adminmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
 		</li>
@@ -183,7 +183,7 @@
 
             <div class="card-body">
               <div class="table-responsive">
-                <form action="emptable.php" method="POST">
+                <form action="adminmem.php" method="POST">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
@@ -332,7 +332,7 @@
 
         </div>
         <div class="modal-body">
-          <form id="form_user" method="post" action="insert_ajax2.php">
+          <form id="form_user" method="post" action="admin_insertmem.php">
             <div class="form-group">
               <label for="user-name" class="control-label">Username:</label>
               <input type="text" class="form-control" id="username"  pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" name="username" autocomplete="off">
@@ -384,7 +384,7 @@
 
           </div>
           <div class="modal-body">
-            <form id="edit_user<?php echo $i; ?>" method="post" action="edit_ajax2.php">
+            <form id="edit_user<?php echo $i; ?>" method="post" action="admin_editmem.php">
               <div class="form-group">
                 <label for="user-name" class="control-label">Username:</label>
                 <input type="text" class="form-control" id="username" name="username" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['a'][$i]; ?>">

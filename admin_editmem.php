@@ -48,7 +48,7 @@ if(!$query){
 		</div>
 		<div class="modal-footer">
 		 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->
-		 <button type="button"  class="btn btn-default"  onclick="window.location='membertable.php'" data-dismiss="modal">Close</button>
+		 <button type="button"  class="btn btn-default"  onclick="window.location='adminmem.php'" data-dismiss="modal">Close</button>
 	   </div>
 	 </div>
 	  
@@ -80,7 +80,7 @@ else {
 		</div>
 		<div class="modal-footer">
 		 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->
-		 <button type="button"  class="btn btn-default"  onclick="window.location='membertable.php'" data-dismiss="modal">Close</button>
+		 <button type="button"  class="btn btn-default"  onclick="window.location='adminmem.php'" data-dismiss="modal">Close</button>
 	   </div>
 	 </div>  
    </div>
@@ -96,7 +96,7 @@ $_SESSION['Tel'] = $_POST['Tel'] ;
 // echo  $_SESSION['User'] ;
 // echo "<script>window.location.href='membermap.php';</script>";
 }else{
-    header('location: membertable.php');
+    header('location: adminmem.php');
 
 }
 ?> 

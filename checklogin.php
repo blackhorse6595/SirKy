@@ -33,6 +33,10 @@ if (isset($_POST['Username'])) {
       header("Location: user-index.php");
       
     }
+    if ($_SESSION["type"] == "admin") {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
+      header("Location: adminem.php");
+      
+    }
     if ($_SESSION["type"] == "ambulance") { //ถ้าเป็น ambulance ให้กระโดดไปหน้า my_friend_location.php
 
       header("Location: my_friend_location.php");

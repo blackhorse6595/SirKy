@@ -3,11 +3,11 @@
 <?php
 session_start();
 require_once 'locations_model.php';
-require_once("connect.php");
-if ($_SESSION['type'] != 'employee') {
-  header("Location: login.html");
-  exit;
-}
+
+// if ($_SESSION['type'] != 'admin') {
+//   header("Location: login.html");
+//   exit;
+// }
 
 ?>
 
@@ -67,7 +67,7 @@ if ($_SESSION['type'] != 'employee') {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="em-index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminem.php">
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
@@ -94,24 +94,24 @@ if ($_SESSION['type'] != 'employee') {
 
 
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item active">
-          <a class="nav-link" href="emptable.php">
+          <!-- Nav Item - Tables -->
+          <li class="nav-item active">
+          <a class="nav-link" href="adminem.php">
             <i class="fas fa-fw fa-table"></i>
             <span>ข้อมูลพนักงาน</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="membertable.php">
+          <a class="nav-link" href="adminmem.php">
             <i class="fas fa-fw fa-table"></i>
             <span>ข้อมูลสมาชิก</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="emmap.php">
+          <a class="nav-link" href="adminmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
-        </li>
-    
-        <li class="nav-item active">
+		</li>
+
+		<li class="nav-item active">
           <a class="nav-link" href="logout.php">
             <i class="fas fa-fw fa-table"></i>
             <span>ออกจากระบบ</span></a>

@@ -61,11 +61,7 @@ if($_SESSION["type"] == "employee"){
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="emmap1.php">
-            <i class="fas fa-fw fa-table"></i>
-            <span>เพิ่มตำแหน่งจากจุด</span></a>
-        </li>
+   
         <li class="nav-item active">
           <a class="nav-link" href="logout.php">
             <i class="fas fa-fw fa-table"></i>
