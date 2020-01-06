@@ -3,7 +3,9 @@ session_start();
 
 // if($_SESSION["type"] == "employee"){
 
-
+  if($_SESSION["type"] != "admin"){
+    header('location:login.html');
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,6 +170,7 @@ session_start();
                         <th>Last Name</th>
                         <th>Tel</th>
                         <th>Email</th>
+                        <th>Active</th>
                         <th>Edit</th>
                         <th>Delete</th>
 
@@ -182,6 +185,7 @@ session_start();
                         <th>Last Name</th>
                         <th>Tel</th>
                         <th>Email</th>
+                        <th>Active</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
@@ -202,7 +206,7 @@ session_start();
                           <td><?php echo $info['Lastname']; ?></td>
                           <td><?php echo $info['Tel']; ?></td>
                           <td><?php echo $info['Email']; ?></td>
-
+                          <td><?php echo $info['Active']; ?></td>
                           <?php $a = array();
                           $_SESSION['a'][$i] =  $info['Username'];
                           $_SESSION['i'][$i] =  $i;
@@ -364,7 +368,7 @@ session_start();
               </div>
               <div class="form-group">
                 <label for="user-pass" class="control-label">Password:</label>
-                <input type="password" class="form-control"  pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" id="password" name="password" value="<?php echo $_SESSION['p'][$i]; ?>" autocomplete="off">
+                <input type="password" class="form-control"  readonly="readonly id="password" name="password" value="<?php echo $_SESSION['p'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="Name" class="control-label">Name:</label>
@@ -379,11 +383,16 @@ session_start();
                 <input type="text" class="form-control" id="Tel" name="Tel"  pattern="[0-9]{10}" title="ตัวเลข 10 ตัว"  value="<?php echo $_SESSION['Te'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
+              <label for="Lastname" class="control-label">Active :</label>
+              <input type="radio" name="Active" value="Yes"> YES 
+              <input type="radio" name="Active" value="No"> NO 
+              </div>
+              <div class="form-group">
                 <label for="Email" class="control-label">Email:</label>
                 <input type="text" class="form-control" id="Email" name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['s'][$i]; ?>">
               </div>
           </div>
-
+        
 
 
 
@@ -449,7 +458,7 @@ session_start();
         </div>
       </div>
     </div> <?php } ?>
-  <!-- End Edit Modal -->
+  <!-- End Delete Modal -->
 
   <script>
     // $(document).ready(function() {

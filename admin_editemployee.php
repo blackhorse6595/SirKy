@@ -20,11 +20,12 @@ if(isset($_POST['username']) ){
 $username = $_POST['username'];
 $password = $_POST['password'];
 $Name = $_POST['Name'];
+$Active = $_POST['Active'];
 $Lastname = $_POST['Lastname'];
 $Email = $_POST['Email'];
 $sql = "UPDATE  member SET  Name = '".$_POST["Name"]."' ,
 Lastname = '".$_POST["Lastname"]."' ,
-Tel = '".$_POST["Tel"]."' WHERE username =  '".$username."' ";
+Tel = '".$_POST["Tel"]."', Active ='".$Active."'  WHERE username =  '".$username."' ";
 $query = mysqli_query($con,$sql);
 // $result =mysqli_fetch_array($query);
 if(!$query){

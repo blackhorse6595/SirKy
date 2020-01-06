@@ -1,15 +1,15 @@
-<?php require_once("connect.php"); 
- session_start(); 
+<?php require_once("connect.php");
+session_start();
 //  if($_SESSION["type"] != "admin"){
 //    session_destroy();
 //    header('location:login.php');
 //  }
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  
+
   <link rel="icon" type="image/png" href="image/icons/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,10 +44,10 @@
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
-        <div class="sidebar-brand-text mx-3">Khao Yai 
-        <br><?php echo $_SESSION['User']; ?>
+        <div class="sidebar-brand-text mx-3">Khao Yai
+          <br><?php echo $_SESSION['User']; ?>
         </div>
-        
+
       </a>
 
       <!-- Divider -->
@@ -83,9 +83,9 @@
           <a class="nav-link" href="adminmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>
-		</li>
+        </li>
 
-		<li class="nav-item active">
+        <li class="nav-item active">
           <a class="nav-link" href="logout.php">
             <i class="fas fa-fw fa-table"></i>
             <span>ออกจากระบบ</span></a>
@@ -194,8 +194,9 @@
                         <th>Last Name</th>
                         <th>Tel</th>
                         <th>Email</th>
-
+                        <th>Active</th>
                         <th>Edit</th>
+                        <th>Delete</th>
 
 
                       </tr>
@@ -209,8 +210,9 @@
                         <th>Last Name</th>
                         <th>Tel</th>
                         <th>Email</th>
-
+                        <th>Active</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                       </tr>
                     </tfoot>
                     <tbody>
@@ -218,7 +220,7 @@
                       <?php
                       $i = 0;
                       while ($info = mysqli_fetch_array($data)) {
-                        ?>
+                      ?>
 
 
                         <tr>
@@ -229,17 +231,18 @@
                           <td><?php echo $info['Lastname']; ?></td>
                           <td><?php echo $info['Tel']; ?></td>
                           <td><?php echo $info['Email']; ?></td>
-
+                          <td><?php echo $info['Active']; ?></td>
                           <?php $a = array();
-                            $_SESSION['a'][$i] =  $info['Username'];
-                            $_SESSION['i'][$i] =  $i;
-                            $_SESSION['e'][$i] =  $info['Email'];
-                            $_SESSION['p'][$i] =  $info['Password'];
-                            $_SESSION['n'][$i] =  $info['Name'];
-                            $_SESSION['ln'][$i] =  $info['Lastname'];
-                            $_SESSION['t'][$i] =  $info['Tel'];
-                            ?>
+                          $_SESSION['a'][$i] =  $info['Username'];
+                          $_SESSION['i'][$i] =  $i;
+                          $_SESSION['e'][$i] =  $info['Email'];
+                          $_SESSION['p'][$i] =  $info['Password'];
+                          $_SESSION['n'][$i] =  $info['Name'];
+                          $_SESSION['ln'][$i] =  $info['Lastname'];
+                          $_SESSION['t'][$i] =  $info['Tel'];
+                          ?>
                           <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal<?php echo $i; ?>" id="<? $info['Username']; ?> " name='Edit'>Edit User</button> </td>
+                          <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal<?php echo $i; ?>" id="<? $info['Username']; ?> " name='Delete'>Delete User</button> </td>
                         </tr>
                       <?php
                         $i++;
@@ -335,35 +338,35 @@
           <form id="form_user" method="post" action="admin_insertmem.php">
             <div class="form-group">
               <label for="user-name" class="control-label">Username:</label>
-              <input type="text" class="form-control" id="username"  pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" name="username" autocomplete="off">
+              <input type="text" class="form-control" required id="username" pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" name="username" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="user-pass" class="control-label">Password:</label>
-              <input type="password" class="form-control"  pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" id="password" name="password" autocomplete="off">
+              <input type="password" class="form-control" required pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" id="password" name="password" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="Name" class="control-label">Name:</label>
-              <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" autocomplete="off">
+              <input type="text" class="form-control" required pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="Lastname" class="control-label">Lastname:</label>
-              <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" id="Lastname" name="Lastname" autocomplete="off">
+              <input type="text" class="form-control" required pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" id="Lastname" name="Lastname" autocomplete="off">
             </div>
             <div class="form-group">
-                <label for="Lastname" class="control-label">Tel:</label>
-                <input type="text" class="form-control" pattern="[0-9]{10}" title="ภาษาอังกฤษ ภาษาไทย" id="Tel" name="Tel" autocomplete="off">
-              </div>
+              <label for="Lastname" class="control-label">Tel:</label>
+              <input type="text" class="form-control" pattern="[0-9]{10}" title="ภาษาอังกฤษ ภาษาไทย" id="Tel" name="Tel" autocomplete="off" required>
+            </div>
             <div class="form-group">
               <label for="Email" class="control-label">Email:</label>
-              <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" placeholder="@">
+              <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" placeholder="@" required>
             </div>
         </div>
-        </form>
+
 
 
 
         <?php
-       
+
         ?>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -372,6 +375,7 @@
       </div>
     </div>
   </div>
+  </form>
   <!-- End Add Modal -->
   <?php for ($i = 0; $i < sizeof($_SESSION['a']); $i++) { ?>
     <!-- Edit Modal -->
@@ -386,31 +390,36 @@
           <div class="modal-body">
             <form id="edit_user<?php echo $i; ?>" method="post" action="admin_editmem.php">
               <div class="form-group">
-                <label for="user-name" class="control-label">Username:</label>
+                <label for="user-name" class="control-label">Username :</label>
                 <input type="text" class="form-control" id="username" name="username" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['a'][$i]; ?>">
               </div>
               <div class="form-group">
-                <label for="user-pass" class="control-label">Password:</label>
-                <input type="text" class="form-control"  pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" id="password" name="password" value="<?php echo $_SESSION['p'][$i]; ?>" autocomplete="off">
+                <label for="user-pass" class="control-label">Password :</label>
+                <input type="text" class="form-control" readonly="readonly" id="password" name="password" value="<?php echo $_SESSION['p'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
-                <label for="Name" class="control-label">Name:</label>
+                <label for="Name" class="control-label">Name :</label>
                 <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" value="<?php echo $_SESSION['n'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
-                <label for="Lastname" class="control-label">Lastname:</label>
-                <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย"  id="Lastname" name="Lastname"  value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
+                <label for="Lastname" class="control-label">Lastname :</label>
+                <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย" id="Lastname" name="Lastname" value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="Lastname" class="control-label">Tel:</label>
-                <input type="text" class="form-control" id="Tel" name="Tel"  pattern="[0-9]{10}" title="ตัวเลข 10 ตัว" value="<?php echo $_SESSION['t'][$i]; ?>" autocomplete="off">
+                <input type="text" class="form-control" id="Tel" name="Tel" pattern="[0-9]{10}" title="ตัวเลข 10 ตัว" value="<?php echo $_SESSION['t'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
-                <label for="Email" class="control-label">Email:</label>
+              <label for="Lastname" class="control-label">Active :</label>
+              <input type="radio" name="Active" value="Yes"> YES 
+              <input type="radio" name="Active" value="No"> NO <br>
+              </div>
+              <div class="form-group">
+                <label for="Email" class="control-label">Email :</label>
                 <input type="Email" class="form-control" id="Email" name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['e'][$i]; ?>">
               </div>
           </div>
-         
+
 
 
 
@@ -419,42 +428,94 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary btn-add" id="btnedit<?php echo $i; ?>">Edit User</button>
           </div>
-           </form>
+          </form>
         </div>
       </div>
-    </div>  <?php } ?>
-    <!-- End Edit Modal -->
+    </div> <?php } ?>
+  <!-- End Edit Modal -->
+  <?php for ($i = 0; $i < sizeof($_SESSION['a']); $i++) { ?>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deletemodal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Delete User</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+          </div>
+          <div class="modal-body">
+
+            <form id="del_user<?php echo $i; ?>" method="post" action="delmem.php">
+              <div class="form-group">
+                <label for="user-name" class="control-label">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['a'][$i]; ?>">
+              </div>
+              <div class="form-group">
+                <label for="user-pass" class="control-label">Password:</label>
+                <input type="password" class="form-control" readonly="readonly" id="password" name="password" value="<?php echo $_SESSION['p'][$i]; ?>" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="Name" class="control-label">Name:</label>
+                <input type="text" class="form-control" id="Name" readonly="readonly" name="Name" value="<?php echo $_SESSION['n'][$i]; ?>" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="Lastname" class="control-label">Lastname:</label>
+                <input type="text" class="form-control" id="Lastname" readonly="readonly" name="Lastname" value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="Tel" class="control-label">Tel:</label>
+                <input type="text" class="form-control" id="Tel" name="Tel" readonly="readonly" value="<?php echo $_SESSION['Te'][$i]; ?>" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="Email" class="control-label">Email:</label>
+                <input type="text" class="form-control" id="Email" name="Email" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['s'][$i]; ?>">
+              </div>
+          </div>
+
+
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-add" id="">Delete User</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div> <?php } ?>
+  <!-- End Delete Modal -->
 
   <script>
-  //   $(document).ready(function() {
-  //     $('#btnadd').click(function() {
-  //       $.ajax({
-  //         method: "POST",
-  //         url: "insert_ajax2.php",
-  //         data: $("#form_user").serialize()
+    //   $(document).ready(function() {
+    //     $('#btnadd').click(function() {
+    //       $.ajax({
+    //         method: "POST",
+    //         url: "insert_ajax2.php",
+    //         data: $("#form_user").serialize()
 
 
-  //       });
-  //     });
-  //   });
-  //   <?php for ( $i = 0; $i<sizeof($_SESSION['a'])  ; $i++) {    ?>
-      
-  //   $(document).ready(function() {
-     
-        
-  //       // console.log(i);
-  //     $('#btnedit<?php echo $i; ?>').click(function() {
-  //       $.ajax({
-  //         method: "POST",
-  //         url: "Edit_ajax.php",
-  //         data: $("#edit_user<?php echo $i; ?>").serialize()
+    //       });
+    //     });
+    //   });
+    //   <?php for ($i = 0; $i < sizeof($_SESSION['a']); $i++) {    ?>
+
+    //   $(document).ready(function() {
 
 
-  //       });
-  //     });
-    
-  //   });  
-  // <?php  } ?>//for
+    //       // console.log(i);
+    //     $('#btnedit<?php echo $i; ?>').click(function() {
+    //       $.ajax({
+    //         method: "POST",
+    //         url: "Edit_ajax.php",
+    //         data: $("#edit_user<?php echo $i; ?>").serialize()
+
+
+    //       });
+    //     });
+
+    //   });  
+    // <?php  } ?>//for
   </script>
 </body>
 
