@@ -28,13 +28,11 @@
 <body>
 	<script>
 		var bFbStatus = false;
-		var fbID = "";
-		var fbName = "";
-		var fbEmail = "";
+		
 
 		window.fbAsyncInit = function() {
 			FB.init({
-				appId: '877764222641349',
+				appId: '549750135613903',
 				cookie: true,
 				xfbml: true,
 				version: 'v5.0'
@@ -68,9 +66,7 @@
 						} else {
 							console.log('Auth cancelled.')
 						}
-					}, {
-						scope: 'email'
-					});
+					}, { scope: 'email' });
 				}
 			}
 
@@ -80,21 +76,21 @@
 
 
 		function getCurrentUserInfo() {
-			FB.api('/me?fields=id,first_name,last_name,email', function(userInfo) {
+			FB.api('me?fields=email,id,first_name,last_name', function(response) {
 				
-				console.log('Successful login for: ' + userInfo.first_name + ' ' + userInfo.last_name + ' ' + userInfo.email);
+				console.log('Successful login for: ' + response.first_name + ' ' + response.last_name + ' ' + response.email);
+				console.log(response);
+				 fbid = response.id;
+				 fbfirstname = response.first_name;
+			 fblastname = response.last_name;
+				 fbEmail = response.email;
 
-				var fbid = userInfo.id;
-				var fbfirstname = userInfo.first_name;
-				var fblastname = userInfo.last_name;
-				var fbEmail = userInfo.email;
-
-				$("#hdnEmail").val(fbEmail);
+				$("#hdnemail").val(fbEmail);
 				$("#hdnFbID").val(fbid);
 				$("#hdnfirstname ").val(fbfirstname);
 				$("#hdnlastname ").val(fblastname);
 
-			// $("#frmMain").submit();
+			$("#frmMain").submit();
 
 		});
 		}
@@ -110,8 +106,8 @@
 
 	<form action="check.php" method="post" name="frmMain" id="frmMain">
 		<input type="hidden" id="hdnFbID" name="hdnFbID">
-		<input type="hidden" id="hdnfirstname" name="hdnfirstame">
-		<input type="hidden" id="hdnEmail" name="hdnEmail">
+		<input type="hidden" id="hdnfirstname" name="hdnfirstname">
+		<input type="hidden" id="hdnemail" name="hdnemail">
 		<input type="hidden" id="hdnlastname" name="hdnlastname">
 	</form>
 
@@ -155,7 +151,7 @@
 
 
 				<div class="container-login100-form-btn p-t-10">
-					<div class="fb-login-button" data-width="" data-size="large " data-button-type="login_with" data-auto-logout-link="false" onlogin="checkLoginState();" data-use-continue-as="true"></div>
+					<div class="fb-login-button" scope="public_profile,email" data-width="" data-size="large " data-button-type="login_with" data-auto-logout-link="false" onlogin="checkLoginState();" data-use-continue-as="false"></div>
 				</div>
 				<div class="container-login100-form-btn p-t-10">
 					<div class="text-center w-full">
@@ -189,179 +185,4 @@
 	<script src="js/main.js"></script>
 
 </body>
-<script>
-	var bFbStatus = false;
-	var fbID = "";
-	var fbfirstname = "";
-	var fbEmail = "";
-	var fblastname = "";
-
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId: '877764222641349',
-			cookie: true,
-			xfbml: true,
-			version: 'v5.0'
-		});
-		FB.AppEvents.logPageView();
-	};
-
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {
-			return;
-		}
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
-
-	function statusChangeCallback(response) {
-
-		if (bFbStatus == false) {
-			fbID = response.authResponse.userID;
-
-			if (response.status == 'connected') {
-				getCurrentUserInfo(response)
-			} else {
-				FB.login(function(response) {
-					if (response.authResponse) {
-						getCurrentUserInfo(response)
-					} else {
-						console.log('Auth cancelled.')
-					}
-				}, {
-					scope: 'email'
-				});
-			}
-		}
-
-
-		bFbStatus = true;
-	}
-
-
-	function getCurrentUserInfo() {
-		FB.api('/me?fields=id,email,first_name,last_name', function(userInfo) {
-			fbid = userInfo.id;
-			fbfirstname = userInfo.first_name;
-			fblastname = userInfo.last_name;
-			fbEmail = userInfo.email;
-			$("#hdnEmail").val(fbEmail);
-			$("#hdnFbID").val(fbid);
-			$("#hdnfirstname ").val(fbfirstname);
-			$("#hdnlastname ").val(fblastname);
-			
-			console.log('Successful login for: ' + userInfo.first_name + ' ' + userInfo.last_name + ' ' + userInfo.email);
-			// $("#frmMain").submit();
-
-		});
-	}
-
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-	}
-</script>
-
-
-
-<form action="check.php" method="post" name="frmMain" id="frmMain">
-	<input type="hidden" id="hdnFbID" name="hdnFbID">
-	<input type="hidden" id="hdnfirstname" name="hdnfirstame">
-	<input type="hidden" id="hdnEmail" name="hdnEmail">
-	<input type="hidden" id="hdnlastname" name="hdnlastname">
-	
-</form> -->
-
 </html>
-<!-- 
-
-  <script>
-
-  var bFbStatus = false;
-  var fbID = "";
-  var fbName = "";
-  var fbEmail = "";
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '877764222641349',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v5.0'
-    });
-    FB.AppEvents.logPageView();   
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-
-function statusChangeCallback(response)
-{
-
-		if(bFbStatus == false)
-		{
-			fbID = response.authResponse.userID;
-
-			  if (response.status == 'connected') {
-				getCurrentUserInfo(response)
-			  } else {
-				FB.login(function(response) {
-				  if (response.authResponse){
-					getCurrentUserInfo(response)
-				  } else {
-					console.log('Auth cancelled.')
-				  }
-				}, { scope: 'email' });
-			  }
-		}
-
-
-		bFbStatus = true;
-}
-
-
-    function getCurrentUserInfo() {
-      FB.api('/me?fields=name,email', function(userInfo) {
-
-		  fbName = userInfo.name;
-		  fbEmail = userInfo.email;
-
-			$("#hdnFbID").val(fbID);
-			$("#hdnName ").val(fbName);
-			$("#hdnEmail").val(fbEmail);
-			$("#frmMain").submit();
-
-      });
-    }
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-
-
-</script>
-
-เข้าสู่ระบบโดย Facebook...
-<fb:login-button 
-  scope="public_profile,emaiหl"
-  onlogin="checkLoginState();">
-</fb:login-button>
-
-<form action="check.php" method="post" name="frmMain" id="frmMain">
-	<input type="hidden" id="hdnFbID" name="hdnFbID">
-	<input type="hidden" id="hdnName" name="hdnName">
-	<input type="hidden" id="hdnEmail" name="hdnEmail"> 
-</form> -->

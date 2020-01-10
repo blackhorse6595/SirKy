@@ -2,11 +2,11 @@
  require_once("connect.php");
 session_start();
 
-// เช็คว่า User ได้ผ่านการ Login มาหรือไม่ (ถ้าไม่ได้ Login มาให้ส่งต่อไปหน้าไหนก็ใส่ URL ลงไปครับ ตรงตำแหน่ง login.html)
+// เช็คว่า User ได้ผ่านการ Login มาหรือไม่ (ถ้าไม่ได้ Login มาให้ส่งต่อไปหน้าไหนก็ใส่ URL ลงไปครับ ตรงตำแหน่ง login.php)
 
 if ($_SESSION['type'] != "USER") {
     echo "test 0";
-    //  header("Location: login.html");
+    //  header("Location: login.php");
      exit;
 }
 
@@ -119,7 +119,7 @@ if ($_SESSION['type'] != "USER") {
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <a href="./login.html"><img src="image/kha2.jpg" style="height:500px;"></a>
+                            <a href="./login.php"><img src="image/kha2.jpg" style="height:500px;"></a>
                             
                             <div class="carousel-caption">
                                 KHAO YAI National Park

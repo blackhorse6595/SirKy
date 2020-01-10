@@ -4,41 +4,64 @@ session_start();
 //echo $_POST["hdnName"]."<br>";
 //echo $_POST["hdnEmail"]."<br>";
 print_r($_POST);
-	require_once('connect.php');
-	
+require_once('connect.php');
+// Check Exists ID
+$sql = "SELECT * FROM member WHERE Email = '" . $_POST["hdnemail"] . "' ";
+echo "<br>$sql<br>";
+$query = $con-> query($sql);
+$row = $query -> fetch_assoc();
 
+print_r($row);
+if ($row) {
+    $_SESSION["username"] = $row["username"];
+    $_SESSION["User"] = $row["Name"];
+    $_SESSION["type"] = $row["Status"];
+    $_SESSION["Lastname"] = $row["Lastname"];
+    $_SESSION["email"] = $row["Email"];
 
-	// Check Exists ID
-	$strSQL = "SELECT * FROM tb_facebook WHERE FACEBOOK_ID = '".$_POST["hdnFbID"]."' ";
-	$objQuery = mysql_query($strSQL);
-	$objResult = mysql_fetch_array($objQuery);
-	if($objResult)
-	{
-		$_SESSION["strFacebookID"] = $objResult["FACEBOOK_ID"];
-		header("location:page1.php");
-		exit();
-	}
-	else
-	{
-		// Create New ID
+    header("location:membermap.php");
+    
+} else {
+    // Create New ID
 
-			$strPicture = "https://graph.facebook.com/".$_POST["hdnFbID"]."/picture?type=large";
-			$strLink = "https://www.facebook.com/app_scoped_user_id/".$_POST["hdnFbID"]."/";
-
-			$strSQL ="  INSERT INTO  tb_facebook (FACEBOOK_ID	,NAME,EMAIL,PICTURE,LINK,CREATE_DATE) 
+    // $strPicture = "https://graph.facebook.com/" . $_POST["hdnFbID"] . "/picture?type=large";
+    // $strLink = "https://www.facebook.com/app_scoped_user_id/" . $_POST["hdnFbID"] . "/";
+$sid = session_id();
+    $sql = "  INSERT INTO  member (Username,Password,Name,Lastname,Tel,Email,Status,SID,Active)
 				VALUES
-				('".trim($_POST["hdnFbID"])."',
-				'".trim($_POST["hdnName"])."',
-				'".trim($_POST["hdnEmail"])."',
-				'".trim($strPicture)."',
-				'".trim($strLink)."',
-				'".trim(date("Y-m-d H:i:s"))."')";
-			$objQuery  = mysql_query($strSQL);
+				('" . trim($_POST["hdnFbID"]) . "',
+				'FROMFacebook',
+                '" . trim($_POST["hdnfirstname"]) . "',
+				'" . trim($_POST["hdnlastname"]) . "',
+                '',
+                '" . trim($_POST["hdnemail"]) . "',
+				
+				'USER',
+                '" . $sid. "',
+                'Yes')";
+        echo $sql;
+    $query  = $con -> query($sql);
+    if($query){
+        echo "<br>sssdfdsff";
+        $sql = "SELECT * FROM member WHERE Email = '" . $_POST["hdnemail"] . "' ";
+        $query = $con -> query($sql);
+        $row = $query -> fetch_assoc();
+        echo "<br>";
+        print_r($row);
+        $_SESSION["username"] = $row["username"];
+    $_SESSION["User"] = $row["Name"];
+    $_SESSION["type"] = $row["Status"];
+    $_SESSION["Lastname"] = $row["Lastname"];
+    $_SESSION["email"] = $row["Email"];
+    echo "<br>";
+        print_r($_SESSION);
+    // header("location:membermap.php");
+    }else{
+        echo $con->error;
 
-			$_SESSION["strFacebookID"] = $_POST["hdnFbID"];
-			header("location:page1.php");
-			exit();
-	}
+    }
+   
+    // header("location:page1.php");
+    exit();
+}
 
-	mysql_close();
-?>
