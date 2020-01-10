@@ -115,8 +115,9 @@
 <script>
 	var bFbStatus = false;
 	var fbID = "";
-	var fbName = "";
+	var fbfirstname = "";
 	var fbEmail = "";
+	var fblastname = "";
 
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -166,7 +167,7 @@
 
 
 	function getCurrentUserInfo() {
-		FB.api('/me?fields=id,first_name,last_name,email', function(userInfo) {
+		FB.api('/me?fields=id,email,first_name,last_name', function(userInfo) {
 			fbid = userInfo.id;
 			fbfirstname = userInfo.first_name;
 			fblastname = userInfo.last_name;
