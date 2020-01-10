@@ -106,6 +106,11 @@ require_once 'locations_model.php';
             <span>ข้อมูลสมาชิก</span></a>
         </li>
         <li class="nav-item active">
+          <a class="nav-link" href="adminambu.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>ข้อมูลรถพยาบาล</span></a>
+        </li>
+        <li class="nav-item active">
           <a class="nav-link" href="adminmap.php">
             <i class="fas fa-fw fa-table"></i>
             <span>เพิ่มตำแหน่ง</span></a>

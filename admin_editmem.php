@@ -16,13 +16,23 @@ session_start();
 </head>
 <body>
 <?php
-if(isset($_POST['username']) ){
+
+if(isset($_POST['username'])  ){
 $username = $_POST['username'];
 $password = $_POST['password'];
 $Name = $_POST['Name'];
 $Lastname = $_POST['Lastname'];
-$Active = $_POST['Active'];
+@$Active = $_POST['Active'];
 $Email = $_POST['Email'];
+if($Active == ""){
+    $sql = " select * from member where username =  '".$username."'  ";
+    // echo $sql ;
+    $query = mysqli_query($con,$sql);
+    $result = $query -> fetch_assoc();
+    // print_r($result);
+    $Active = $result['Active'];
+    // echo "<br>$Active" ;
+}
 $sql = "UPDATE  member SET  Name = '".$_POST["Name"]."' ,
 Lastname = '".$_POST["Lastname"]."' ,
 Tel = '".$_POST["Tel"]."' , Active ='".$Active."' WHERE username =  '".$username."' ";
@@ -106,5 +116,5 @@ $_SESSION['Tel'] = $_POST['Tel'] ;
   $(window).load(function(){
     $('#myModal').modal('show');
   });
-  </script>s
+  </script>
 </html>

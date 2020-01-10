@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 header('Content-Type: text/html; charset=utf-8'); ?>
 <?php
 if ($_SESSION['type'] != 'USER') {
-	header("Location: login.html");
+	header("Location: login.php");
 	exit;
 }
 ?>
@@ -221,12 +221,14 @@ if ($_SESSION['type'] != 'USER') {
 					var myPosition_lon = position.coords.longitude;
 					var user = "<?php echo $_SESSION['username'] ?>";
 					var name = "<?php echo $_SESSION['User'] ?>";
+					
 					var pos = new GGM.LatLng(myPosition_lat, myPosition_lon);
 					$.post("addhelp.php", {
 						lat: myPosition_lat,
 						lon: myPosition_lon,
 						user: user,
 						name: name,
+						
 						action: 1
 					});
 
@@ -302,8 +304,8 @@ if ($_SESSION['type'] != 'USER') {
 								html: "<div>\n" +
 									"<table class=\"map1\">\n" +
 									"<tr>\n" +
-									"<td><a>Description:</a></td>\n" +
-									"<td><textarea disabled id='manual_description' placeholder='Description'>" + locations[i][3] + "</textarea></td></tr>\n" +
+									"<td><a>Description : </a></td>\n" +
+									"<td>" + locations[i][3] + "</td></tr>\n" +
 									"</table>\n" +
 									"</div>"
 							});
@@ -351,7 +353,7 @@ if ($_SESSION['type'] != 'USER') {
 						.done(function() {
 							$('#form_user')[0].reset();
 							alert('ส่งข้อความช่วยเหลือสำเร็จ');
-							// window.location.href='membermap.php';
+							window.location.href='membermap.php';
 						})
 						.fail(function() {
 							alert("error");

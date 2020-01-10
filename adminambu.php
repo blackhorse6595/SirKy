@@ -157,7 +157,7 @@ session_start();
 
           <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">Add User</button>
 
-          <?php $data = mysqli_query($con, "SELECT * FROM member where Status = 'employee'")
+          <?php $data = mysqli_query($con, "SELECT * FROM user_position ")
             or die($comysqli_error()); ?>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -204,8 +204,8 @@ session_start();
 
 
                         <tr>
-                          <td><?php echo $info['UserID']; ?></td>
-                          <td><?php echo $info['Username']; ?></td>
+                          <td><?php echo $info['user_position_id']; ?></td>
+                          <td><?php echo $info['username']; ?></td>
                           <td><?php echo $info['Password']; ?></td>
                           <td><?php echo $info['Name']; ?></td>
                           <td><?php echo $info['Lastname']; ?></td>
@@ -213,7 +213,7 @@ session_start();
                           <td><?php echo $info['Email']; ?></td>
                           <td><?php echo $info['Active']; ?></td>
                           <?php $a = array();
-                          $_SESSION['a'][$i] =  $info['Username'];
+                          $_SESSION['a'][$i] =  $info['username'];
                           $_SESSION['i'][$i] =  $i;
                           $_SESSION['p'][$i] =  $info['Password'];
                           $_SESSION['n'][$i] =  $info['Name'];
@@ -318,7 +318,7 @@ session_start();
 
         </div>
         <div class="modal-body">
-          <form id="form_user" method="post" action="admin_insertemplo.php">
+          <form id="form_user" method="post" action="admin_insertambu.php">
             <div class="form-group">
               <label for="user-name" class="control-label">Username:</label>
               <input type="text" pattern="[A-Za-z0-9]{8,}" title="ภาษาอังกฤษหรือตัวเลข 8 ตัวขึ้นไป" class="form-control" id="username" name="username" required autocomplete="off" required>
@@ -366,7 +366,7 @@ session_start();
           </div>
           <div class="modal-body">
 
-            <form id="edit_user<?php echo $i; ?>" method="post" action="admin_editemployee.php">
+            <form id="edit_user<?php echo $i; ?>" method="post" action="admin_editambu.php">
               <div class="form-group">
                 <label for="user-name" class="control-label">Username:</label>
                 <input type="text" class="form-control" id="username"  name="username" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['a'][$i]; ?>">
@@ -424,7 +424,7 @@ session_start();
           </div>
           <div class="modal-body">
 
-            <form id="del_user<?php echo $i; ?>" method="post" action="delem.php">
+            <form id="del_user<?php echo $i; ?>" method="post" action="delambu.php">
               <div class="form-group">
                 <label for="user-name" class="control-label">Username:</label>
                 <input type="text" class="form-control" id="username"  name="username" autocomplete="off" readonly="readonly" value="<?php echo $_SESSION['a'][$i]; ?>">

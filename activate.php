@@ -42,7 +42,7 @@ if(!$objResult)
 			</div>
 			<div class="modal-footer">
 			 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->
-			 <button type="button"  class="btn btn-default"  onclick="window.location='login.html'" data-dismiss="modal">Close</button>
+			 <button type="button"  class="btn btn-default"  onclick="window.location='login.php'" data-dismiss="modal">Close</button>
 		   </div>
 		 </div>
 		  
@@ -76,7 +76,7 @@ else
 	</div>
 	<div class="modal-footer">
 	 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->
-	 <button type="button"  class="btn btn-default"  onclick="window.location='login.html'" data-dismiss="modal">Close</button>
+	 <button type="button"  class="btn btn-default"  onclick="window.location='login.php'" data-dismiss="modal">Close</button>
    </div>
  </div>
   

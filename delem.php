@@ -89,4 +89,4 @@ session_start();
   $(window).load(function(){
     $('#myModal').modal('show');
   });
-  </script>s
+  </script>

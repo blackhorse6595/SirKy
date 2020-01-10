@@ -16,16 +16,15 @@ session_start();
 </head>
 <body>
 <?php
-
 if(isset($_POST['username']) ){
 $username = $_POST['username'];
 $password = $_POST['password'];
 $Name = $_POST['Name'];
-@$Active = $_POST['Active'];
 $Lastname = $_POST['Lastname'];
+@$Active = $_POST['Active'];
 $Email = $_POST['Email'];
 if($Active == ""){
-    $sql = " select * from member where username =  '".$username."'  ";
+    $sql = " select * from user_position where username =  '".$username."'  ";
     // echo $sql ;
     $query = mysqli_query($con,$sql);
     $result = $query -> fetch_assoc();
@@ -33,9 +32,9 @@ if($Active == ""){
     $Active = $result['Active'];
     // echo "<br>$Active" ;
 }
-$sql = "UPDATE  member SET  Name = '".$_POST["Name"]."' ,
+$sql = "UPDATE user_position SET  Name = '".$_POST["Name"]."' ,
 Lastname = '".$_POST["Lastname"]."' ,
-Tel = '".$_POST["Tel"]."', Active ='".$Active."'  WHERE username =  '".$username."' ";
+Tel = '".$_POST["Tel"]."' , Active ='".$Active."' WHERE username =  '".$username."' ";
 $query = mysqli_query($con,$sql);
 // $result =mysqli_fetch_array($query);
 if(!$query){
@@ -59,7 +58,7 @@ if(!$query){
 		</div>
 		<div class="modal-footer">
 		 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->
-		 <button type="button"  class="btn btn-default"  onclick="window.location='admin_adminem.php'" data-dismiss="modal">Close</button>
+		 <button type="button"  class="btn btn-default"  onclick="window.location='adminmambu.php'" data-dismiss="modal">Close</button>
 	   </div>
 	 </div>
 	  
@@ -91,7 +90,7 @@ else {
 		</div>
 		<div class="modal-footer">
 		 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->
-		 <button type="button"  class="btn btn-default"  onclick="window.location='adminem.php'" data-dismiss="modal">Close</button>
+		 <button type="button"  class="btn btn-default"  onclick="window.location='adminambu.php'" data-dismiss="modal">Close</button>
 	   </div>
 	 </div>  
    </div>
@@ -107,7 +106,7 @@ $_SESSION['Tel'] = $_POST['Tel'] ;
 // echo  $_SESSION['User'] ;
 // echo "<script>window.location.href='membermap.php';</script>";
 }else{
-    header('location: adminem.php');
+    header('location: adminmem.php');
 
 }
 ?> 

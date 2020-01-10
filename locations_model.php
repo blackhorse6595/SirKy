@@ -56,7 +56,7 @@ function load_marker(){
         die('Not connected : ' . mysqli_connect_error());
     }$con->set_charset("utf8");
     // update location with location_status if admin location_status.
-    $sqldata = mysqli_query($con,"select * from help ");
+    $sqldata = mysqli_query($con,"select * from help where Used ='Yes'");
 
     $rows = array();
 
