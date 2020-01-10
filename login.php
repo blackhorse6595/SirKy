@@ -26,6 +26,95 @@
 </head>
 
 <body>
+	<script>
+		var bFbStatus = false;
+		var fbID = "";
+		var fbName = "";
+		var fbEmail = "";
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId: '877764222641349',
+				cookie: true,
+				xfbml: true,
+				version: 'v5.0'
+			});
+			FB.AppEvents.logPageView();
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+
+		function statusChangeCallback(response) {
+
+			if (bFbStatus == false) {
+				fbID = response.authResponse.userID;
+
+				if (response.status == 'connected') {
+					getCurrentUserInfo(response)
+				} else {
+					FB.login(function(response) {
+						if (response.authResponse) {
+							getCurrentUserInfo(response)
+						} else {
+							console.log('Auth cancelled.')
+						}
+					}, {
+						scope: 'email'
+					});
+				}
+			}
+
+
+			bFbStatus = true;
+		}
+
+
+		function getCurrentUserInfo() {
+			FB.api('/me?fields=id,first_name,last_name,email', function(userInfo) {
+				
+				console.log('Successful login for: ' + userInfo.first_name + ' ' + userInfo.last_name + ' ' + userInfo.email);
+
+				var fbid = userInfo.id;
+				var fbfirstname = userInfo.first_name;
+				var fblastname = userInfo.last_name;
+				var fbEmail = userInfo.email;
+
+				$("#hdnEmail").val(fbEmail);
+				$("#hdnFbID").val(fbid);
+				$("#hdnfirstname ").val(fbfirstname);
+				$("#hdnlastname ").val(fblastname);
+
+			// $("#frmMain").submit();
+
+		});
+		}
+
+		function checkLoginState() {
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		}
+	</script>
+
+
+
+	<form action="check.php" method="post" name="frmMain" id="frmMain">
+		<input type="hidden" id="hdnFbID" name="hdnFbID">
+		<input type="hidden" id="hdnfirstname" name="hdnfirstame">
+		<input type="hidden" id="hdnEmail" name="hdnEmail">
+		<input type="hidden" id="hdnlastname" name="hdnlastname">
+	</form>
+
 	<div id="fb-root"></div>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v5.0&appId=877764222641349&autoLogAppEvents=1"></script>
 
@@ -67,9 +156,6 @@
 
 				<div class="container-login100-form-btn p-t-10">
 					<div class="fb-login-button" data-width="" data-size="large " data-button-type="login_with" data-auto-logout-link="false" onlogin="checkLoginState();" data-use-continue-as="true"></div>
-
-					<!-- <fb:login-button class="fb-login-button" data-button-type="login_with scope="public_profile,email" onlogin="checkLoginState();">
-					</fb:login-button> -->
 				</div>
 				<div class="container-login100-form-btn p-t-10">
 					<div class="text-center w-full">
@@ -86,21 +172,12 @@
 						</a>
 					</div>
 				</div>
-
-
-
 			</form>
-
 		</div>
 	</div>
-	</div>
-
 
 	<div id="status">
 	</div>
-
-
-
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -279,7 +356,7 @@ function checkLoginState() {
 
 เข้าสู่ระบบโดย Facebook...
 <fb:login-button 
-  scope="public_profile,email"
+  scope="public_profile,emaiหl"
   onlogin="checkLoginState();">
 </fb:login-button>
 
