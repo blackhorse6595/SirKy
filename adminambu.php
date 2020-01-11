@@ -4,7 +4,7 @@ session_start();
 // if($_SESSION["type"] == "employee"){
 
   if($_SESSION["type"] != "admin"){
-    header('location:login.html');
+    header('location:login.php');
   }
 ?>
 <!DOCTYPE html>

@@ -397,7 +397,7 @@ if ($_SESSION['type'] != 'USER') {
 						</div>
 						<div class="form-group">
 							<label for="Tel" class="control-label">Tel:</label>
-							<input type="text" class="form-control" id="Tel" name="Tel" value="<?php echo $_SESSION['Tel']; ?>" autocomplete="off">
+							<input type="text" class="form-control" id="Tel" name="Tel" value="<?php echo @$_SESSION['Tel']; ?>" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="Email" class="control-label">Email:</label>

@@ -5,7 +5,7 @@ session_start();
 require_once 'locations_model.php';
 
 // if ($_SESSION['type'] != 'admin') {
-//   header("Location: login.html");
+//   header("Location: login.php");
 //   exit;
 // }
 

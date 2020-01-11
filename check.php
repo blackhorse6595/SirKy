@@ -53,6 +53,7 @@ $sid = session_id();
     $_SESSION["type"] = $row["Status"];
     $_SESSION["Lastname"] = $row["Lastname"];
     $_SESSION["email"] = $row["Email"];
+    $_SESSION['Tel'] = "";
     echo "<br>";
         print_r($_SESSION);
     // header("location:membermap.php");
