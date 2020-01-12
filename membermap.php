@@ -102,13 +102,10 @@ if ($_SESSION['type'] != 'USER') {
 							<a class="nav-link js-scroll-trigger" href="user-index.php">home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="membermap.php">Show map</a>
+							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Help</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ขอความช่วยเหลือ</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#edituser" data-whatever="@mdo">แก้ไขข้อมูล</a>
+							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#edituser" data-whatever="@mdo">Edit</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
@@ -145,7 +142,7 @@ if ($_SESSION['type'] != 'USER') {
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" onClick="dataList.addData($('#form_user').serializeArray());">ขอความช่วยเหลือ</button>
+					<button type="button" class="btn btn-primary" onClick="dataList.addData($('#form_user').serializeArray());">Submit</button>
 				</div>
 			</div>
 			</form>
@@ -353,7 +350,7 @@ if ($_SESSION['type'] != 'USER') {
 						.done(function() {
 							$('#form_user')[0].reset();
 							alert('ส่งข้อความช่วยเหลือสำเร็จ');
-							window.location.href='membermap.php';
+							window.location.reload();s
 						})
 						.fail(function() {
 							alert("error");

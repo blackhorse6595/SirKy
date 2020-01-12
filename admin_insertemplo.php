@@ -2,7 +2,8 @@
 require_once('connect.php');
 session_start();
 $sid = session_id();
-echo $sid;
+// echo $sid;
+echo "<meta http-equiv='Content-Security-Policy' content='upgrade-insecure-requests'>";
 $username = $_POST['username'];
 $password = $_POST['password'];
 $Name = $_POST['Name'];

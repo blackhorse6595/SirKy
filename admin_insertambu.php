@@ -1,6 +1,7 @@
 <?php
 require_once('connect.php');
 session_start();
+echo "<meta http-equiv='Content-Security-Policy' content='upgrade-insecure-requests'>";
 $sid = session_id();
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -16,7 +17,7 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
 if($result){?>
    <script language ="javascript"> 
     alert("มี Username หรือ Email ซ้ำ")
-    window.location='adminmambu.php' 
+    window.location='adminambu.php' 
   </script>
   <?php
 }else{

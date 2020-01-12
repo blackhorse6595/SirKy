@@ -335,12 +335,13 @@ require_once 'locations_model.php';
                 position: new google.maps.LatLng(a[j][1], a[j][2]),
                 map: map,
                 icon : icc,
-                html: "<div>\n" +
-                  "<table class=\"map1\">\n" +
-                  "<tr>\n" +
-                  "<td><a>รายละเอียด:</a></td>\n" +
-                  "<td><textarea disabled id='manual_description' placeholder='Description'>" + a[j][5] + "</textarea></td></tr>\n" +
-                  "<tr><td><input type='button' class='btn btn-danger' value='Delete Point' onclick='delhelp(" + a[j][0] + ")'/></button></td></tr>"+
+                html: "<div>" +
+                  "<table class=\"map1\">" +
+                  "<tr><td align='center'>รายละเอียด :</td><td>" + a[j][6] + "</td></tr>" +
+                  "<tr><td align='center'>เบอร์โทรศัพท์ :</td><td>" + a[j][4] + "</td></tr>"+
+                  "<tr><td align='center'>ชื่อ :<td>" + a[j][5] + "</td></tr>"+
+                  "<tr><td  align ='center'><input type='button' style='width:120px ;height:30px' class='btn btn-danger' value='Delete Point' onclick='delhelp(" + a[j][0] + ")'/></button></td>"+
+                  "<td align ='center'><input type='button' style='width:120px ;height:30px' class='btn btn-success' value='Help Success' onclick='edithelp(" + a[j][0] + ")'/></button></td></tr>"+
                   "  </table>\n" +
 
                   "</div>"
@@ -494,6 +495,14 @@ require_once 'locations_model.php';
           function delhelp(id){
             $.post("delhelp.php",{
               id: id,
+            },function(data){
+              location.reload();
+            });
+          }
+          function edithelp(id){
+            $.post("delhelp.php",{
+              id: id,
+              action : 2,
             },function(data){
               location.reload();
             });

@@ -329,11 +329,11 @@ session_start();
             </div>
             <div class="form-group">
               <label for="Name" class="control-label">Name:</label>
-              <input type="text" class="form-control" id="Name" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย" name="Name" autocomplete="off" required>
+              <input type="text" class="form-control" id="Name" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" name="Name" autocomplete="off" required>
             </div>
             <div class="form-group">
               <label for="Lastname" class="control-label">Lastname:</label>
-              <input type="text" class="form-control" id="Lastname" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย" name="Lastname" autocomplete="off" required>
+              <input type="text" class="form-control" id="Lastname" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" name="Lastname" autocomplete="off" required>
             </div>
             <div class="form-group">
               <label for="Lastname" class="control-label">Tel:</label>
@@ -377,11 +377,11 @@ session_start();
               </div>
               <div class="form-group">
                 <label for="Name" class="control-label">Name:</label>
-                <input type="text" class="form-control" id="Name" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" name="Name" value="<?php echo $_SESSION['n'][$i]; ?>" autocomplete="off">
+                <input type="text" class="form-control" id="Name" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" name="Name" value="<?php echo $_SESSION['n'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="Lastname" class="control-label">Lastname:</label>
-                <input type="text" class="form-control" id="Lastname" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" name="Lastname" value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
+                <input type="text" class="form-control" id="Lastname" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" name="Lastname" value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="Tel" class="control-label">Tel:</label>

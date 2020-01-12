@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-  
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <link rel="icon" type="image/png" href="image/icons/favicon.png" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -343,11 +343,11 @@
             </div>
             <div class="form-group">
               <label for="Name" class="control-label">Name:</label>
-              <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" autocomplete="off">
+              <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="Lastname" class="control-label">Lastname:</label>
-              <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,0}" title="ภาษาอังกฤษ ภาษาไทย" id="Lastname" name="Lastname" autocomplete="off">
+              <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" id="Lastname" name="Lastname" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="Lastname" class="control-label">Tel:</label>
@@ -395,11 +395,11 @@
               </div>
               <div class="form-group">
                 <label for="Name" class="control-label">Name:</label>
-                <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" value="<?php echo $_SESSION['n'][$i]; ?>" autocomplete="off">
+                <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย" id="Name" name="Name" value="<?php echo $_SESSION['n'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="Lastname" class="control-label">Lastname:</label>
-                <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]{1,}" title="ภาษาอังกฤษ ภาษาไทย"  id="Lastname" name="Lastname"  value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
+                <input type="text" class="form-control" pattern="[A-Za-zกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+" title="ภาษาอังกฤษ ภาษาไทย"  id="Lastname" name="Lastname"  value="<?php echo $_SESSION['ln'][$i]; ?>" autocomplete="off">
               </div>
               <div class="form-group">
                 <label for="Lastname" class="control-label">Tel:</label>

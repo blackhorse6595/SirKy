@@ -6,6 +6,8 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<meta http-equiv='Content-Security-Policy' content='upgrade-insecure-requests'>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -22,7 +24,7 @@ $password = $_POST['password'];
 $Name = $_POST['Name'];
 $Lastname = $_POST['Lastname'];
 $Email = $_POST['Email'];
-$sql = "UPDATE  member SET  Name = '".$_POST["Name"]."' ,
+$sql = "UPDATE  member SET Password = '".$password."' , Name = '".$_POST["Name"]."' ,
 Lastname = '".$_POST["Lastname"]."' ,
 Tel = '".$_POST["Tel"]."' WHERE username =  '".$username."' ";
 $query = mysqli_query($con,$sql);
@@ -56,7 +58,8 @@ if(!$query){
  </div>
   
 </div>
-    <?php 
+	<?php 
+	// echo $sql ;
     }
 else {
     // echo $sql;
@@ -105,5 +108,5 @@ $_SESSION['Tel'] = $_POST['Tel'] ;
   $(window).load(function(){
     $('#myModal').modal('show');
   });
-  </script>s
+  </script>
 </html>

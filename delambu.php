@@ -2,10 +2,12 @@
 
 require_once("connect.php");
 session_start();
+echo "<meta http-equiv='Content-Security-Policy' content='upgrade-insecure-requests'>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -40,7 +42,7 @@ session_start();
 		</div>
 		<!-- ส่วนเนื้อหาของ Modal  -->
 		<div class="modal-body">
-		  <p>ลบข้อมูลสำเร็จ</p>
+		  <p>Delete Success</p>
 		</div>
 		<div class="modal-footer">
 		 <!-- ปุ่มกดปิด (Close) ตรงส่วนล่างของ Modal  -->

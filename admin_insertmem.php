@@ -1,4 +1,5 @@
 <?php
+echo "<meta http-equiv='Content-Security-Policy' content='upgrade-insecure-requests'>";
 require_once('connect.php');
 session_start();
 $sid = session_id();

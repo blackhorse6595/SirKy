@@ -13,12 +13,12 @@ $row = $query -> fetch_assoc();
 
 print_r($row);
 if ($row) {
-    $_SESSION["username"] = $row["username"];
+    $_SESSION["username"] = $row["Username"];
     $_SESSION["User"] = $row["Name"];
     $_SESSION["type"] = $row["Status"];
     $_SESSION["Lastname"] = $row["Lastname"];
     $_SESSION["email"] = $row["Email"];
-
+    $_SESSION["Tel"] = $row["Tel"];
     header("location:membermap.php");
     
 } else {
@@ -48,15 +48,15 @@ $sid = session_id();
         $row = $query -> fetch_assoc();
         echo "<br>";
         print_r($row);
-        $_SESSION["username"] = $row["username"];
+        $_SESSION["username"] = $row["Username"];
     $_SESSION["User"] = $row["Name"];
     $_SESSION["type"] = $row["Status"];
     $_SESSION["Lastname"] = $row["Lastname"];
     $_SESSION["email"] = $row["Email"];
-    $_SESSION['Tel'] = "";
+    $_SESSION['Tel'] = "111111";
     echo "<br>";
-        print_r($_SESSION);
-    // header("location:membermap.php");
+        // print_r($_SESSION);
+    header("location:membermap.php");
     }else{
         echo $con->error;
 
